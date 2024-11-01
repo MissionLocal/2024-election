@@ -74,5 +74,8 @@ body, #electionResults {
     #electionResults tbody td {
         padding: 4px;
     }
+    #body {
+        justify-content: center;
+    }
 }
 
