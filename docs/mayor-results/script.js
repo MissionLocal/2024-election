@@ -28,7 +28,8 @@ document.addEventListener('DOMContentLoaded', function () {
         // Set up a single SVG container for all bars
         const barHeight = 30; // Height of each bar
         const padding = 10; // Padding for the SVG
-        const svgHeight = (data.length * barHeight) + padding; // Total height for the SVG
+        const barPadding = 5; // Additional space between bars
+        const svgHeight = (data.length * (barHeight + barPadding)) + padding; // Total height for the SVG
 
         const svg = d3.select('.bar-chart')
             .append("svg")
@@ -38,8 +39,8 @@ document.addEventListener('DOMContentLoaded', function () {
         // Add labels and bars for each candidate
         data.forEach((d, index) => {
             // Calculate the vertical position for the middle of the bar
-            const barY = index * barHeight + 2; // Starting Y position for the bar
-            const labelY = barY + 15; // Center of the bar
+            const barY = index * (barHeight + barPadding) + 2; // Starting Y position for the bar
+            const labelY = barY + 18; // Center of the bar
 
             // Add labels for candidates
             svg.append("text")
