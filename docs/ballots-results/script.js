@@ -94,7 +94,6 @@ data.forEach((d) => {
         .attr("class", "value");
 });
 
-
         // Resize the iframe once charts are drawn
         pymChild.sendHeight();
     });
