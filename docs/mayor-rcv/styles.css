@@ -27,7 +27,7 @@
     -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
     margin: 0; /* Reset margin */
     display: block; /* Force it to behave as a block-level element */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
 
 }
 
