@@ -16,7 +16,8 @@ body {
 .container {
     display: flex; /* Use flexbox to center the box */
     justify-content: center; /* Center horizontally */
-    padding: 0 10px; /* Padding on the sides of the container */
+    padding: 0; /* Remove side padding for better centering */
+    width: 100%; /* Ensure full width */
 }
 
 /* Box styling for the chart results */
@@ -30,7 +31,7 @@ body {
 }
 
 .box-content {
-    padding-left: 10px;
+    padding-left: 10px; /* Retained original left padding */
 }
 
 /* Box heading styling */
@@ -49,9 +50,11 @@ body {
 /* Responsive layout */
 @media (max-width: 768px) {
     .container {
-        width: 100%; /* Full width for mobile view */
+        padding: 0; /* Ensure no padding for mobile */
     }
     .content {
-        justify-content: center;
+        display: flex; /* Ensure content is a flex container */
+        justify-content: center; /* Center content */
+        width: 100%; /* Full width for mobile view */
     }
 }
