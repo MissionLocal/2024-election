@@ -48,6 +48,13 @@ body {
 }
 
 /* Responsive layout */
+
+@media (max-width: 500px) {
+    .container {
+        max-width: 300px;
+    }
+    
+}
 @media (max-width: 768px) {
     .container {
         padding: 0; /* Ensure no padding for mobile */
