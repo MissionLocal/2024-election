@@ -51,4 +51,7 @@ body {
     .container {
         width: 100%; /* Full width for mobile view */
     }
+    .content {
+        justify-content: center;
+    }
 }
