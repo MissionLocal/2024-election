@@ -1,7 +1,7 @@
 /* Apply font to the whole page */
 body {
     font-family: 'Barlow', sans-serif;
-    margin: 0;
+    margin: 10px;
     padding: 0;
     box-sizing: border-box;
 }
