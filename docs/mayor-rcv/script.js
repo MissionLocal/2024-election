@@ -67,7 +67,9 @@ $(document).ready(function () {
                     
                     // Determine background color
                     var bgColor = 'transparent';
-                    if (parseFloat(row[round]) === minVotes[round]) {
+                    if (isZero) {
+                        bgColor = 'rgba(230, 230, 230, 0.3)'; // Grey background for zero votes
+                    } else if (parseFloat(row[round]) === minVotes[round]) {
                         bgColor = 'rgba(243, 110, 87, 0.4)'; // Red for minimum in each round
                     } 
                     if (round === finalRound && parseFloat(row[round]) === maxFinalRound) {
@@ -103,4 +105,3 @@ $(document).ready(function () {
         }
     });
 });
-
