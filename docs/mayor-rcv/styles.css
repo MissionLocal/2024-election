@@ -1,6 +1,6 @@
- /* Center the container and set max width */
- .table-container {
-    max-width: 500px;
+/* Center the container and set max width */
+.table-container {
+    max-width: 500px; /* Max width for the container */
     margin: 0 auto; /* Center align */
     padding: 1rem; /* Optional padding */
     overflow-x: auto; /* Allow horizontal scrolling */
@@ -22,10 +22,11 @@
 
 /* Responsive table within the container */
 .table-responsive {
-    width: 95%;
-    overflow-x: auto; /* Ensure horizontal scroll for table */
+    width: 100%; /* Ensure it takes full width */
+    overflow-x: auto; /* Allow horizontal scrolling */
     -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
-    margin: 2px;
+    margin: 0; /* Reset margin */
+    display: block; /* Force it to behave as a block-level element */
 }
 
 /* Table styling */
@@ -68,3 +69,4 @@ body, #electionResults {
         padding: 4px;
     }
 }
+
