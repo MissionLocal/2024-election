@@ -26,16 +26,20 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         // Set up a single SVG container for all bars
+        const barHeight = 30; // Height of each bar
+        const padding = 10; // Padding for the SVG
+        const svgHeight = (data.length * barHeight) + padding; // Total height for the SVG
+
         const svg = d3.select('.bar-chart')
             .append("svg")
             .attr("width", width + 100) // Keep the extra space for labels and values
-            .attr("height", data.length * 40 + 10); // Adjust height based on the number of bars (increased height per bar)
+            .attr("height", svgHeight); // Use calculated height
 
         // Add labels and bars for each candidate
         data.forEach((d, index) => {
             // Calculate the vertical position for the middle of the bar
-            const barY = index * 40 + 2; // Starting Y position for the bar
-            const labelY = barY + 20; // Center of the bar (2 + 15)
+            const barY = index * barHeight + 2; // Starting Y position for the bar
+            const labelY = barY + 15; // Center of the bar
 
             // Add labels for candidates
             svg.append("text")
@@ -55,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 .attr("x", 50) // Space for labels
                 .attr("y", barY) // Use index for positioning
                 .attr("width", xScale(d.Value)) // Using the d.Value directly
-                .attr("height", 30) // Height of the bars
+                .attr("height", barHeight - 4) // Adjusted height of the bars
                 .attr("fill", barColor); // Set the fill color based on value
 
             // Display values on the right side of each bar
@@ -71,6 +75,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Resize the iframe once charts are drawn
         pymChild.sendHeight();
+
+        // Debugging: Log SVG dimensions
+        console.log("SVG Width:", width + 100);
+        console.log("SVG Height:", svgHeight);
     }).catch(function (error) {
         console.error("Error loading the CSV data:", error);
     });
