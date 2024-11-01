@@ -55,7 +55,8 @@ $(document).ready(function () {
 
                 // Iterate through the dynamically identified columns in reverse order
                 voteColumns.forEach(round => {
-                    var voteValue = row[round] || "N/A";
+                    var voteValue = row[round] || "N/A"; 
+                    voteValue = parseFloat(voteValue).toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 2});
                     var percentageValue = row[round.replace("Votes", "Percentage")] || "N/A";
                     
                     // Check for zero votes and zero percentage
