@@ -1,0 +1,71 @@
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <title>District supervisor first-choice votes</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css' rel='stylesheet' />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="cont">
+        <div class="instriction-wrapper">
+            <p class="instruction"><em>Select a measure:</em></p>
+        </div>
+    </div>
+
+    <div class="dropdownContainer">
+        <select id="propositionDropdown">
+            <option value="1">District 1</option>
+            <option value="3">District 3</option>
+            <option value="5">District 5</option>
+            <option value="7">District 7</option>
+            <option value="9">District 9</option>
+            <option value="11">District 11</option>
+        </select>
+    </div>
+    <div class="cont">
+        <div id='map'></div>
+    </div>
+
+    <!-- Legend Container -->
+    <div class="legend-container">
+        <!-- First Legend Box -->
+        <div id="legend" class="color-scale">
+            <div style="display: flex; align-items: center;">
+                <div style="background-color: #990000; width: 16.67px; height: 20px; opacity: 0.6;"></div>
+                <div style="background-color: #E02214; width: 16.67px; height: 20px; opacity: 0.6;"></div>
+                <div style="background-color: #E54C4C; width: 16.67px; height: 20px; opacity: 0.6;"></div>
+                <div style="background-color: #EE7651; width: 16.67px; height: 20px; opacity: 0.6;"></div>
+                <div style="background-color: #EF9F6A; width: 16.67px; height: 20px; opacity: 0.6;"></div>
+                <div style="background-color: #FFCB78; width: 16.67px; height: 20px; opacity: 0.6;"></div>
+                <div style="background-color: #9DF4D9; width: 16.67px; height: 20px; opacity: 0.6;"></div>
+                <div style="background-color: #65EAD0; width: 16.67px; height: 20px; opacity: 0.6;"></div>
+                <div style="background-color: #0DD6C7; width: 16.67px; height: 20px; opacity: 0.6;"></div>
+                <div style="background-color: #0DC1D3; width: 16.67px; height: 20px; opacity: 0.6;"></div>
+                <div style="background-color: #00A4BF; width: 16.67px; height: 20px; opacity: 0.6;"></div>
+                <div style="background-color: #007DBC; width: 16.67px; height: 20px; opacity: 0.6;"></div>
+            </div>
+            <div class="legend-labels">
+                <span>No</span>
+                <span>Yes</span>
+            </div>
+        </div>
+
+        <!-- Second Legend Box -->
+        <div id="legend">
+            <div style="display: flex; align-items: center;">
+                <p>Prop. TK is winning with TK% of the vote.</p>
+            </div>
+        </div>
+    </div>
+    <script type='text/javascript' src="map.js"></script>
+    <script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"></script>
+
+</body>
+
+</html>

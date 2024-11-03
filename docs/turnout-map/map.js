@@ -124,3 +124,4 @@ document.addEventListener('DOMContentLoaded', function () {
         map.moveLayer('settlement-subdivision-label');
     });
 });
+
