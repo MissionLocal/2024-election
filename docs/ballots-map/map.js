@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var mapZoom = 10.4;
         var mapY = 37.771;
     } else {
-        var mapZoom = 11.2;
+        var mapZoom = 11.1;
         var mapY = 37.77;
     }
 
