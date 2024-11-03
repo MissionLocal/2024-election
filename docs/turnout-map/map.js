@@ -35,13 +35,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 'fill-color': [
                     'match',
                     ['get', 'yes_perc'],
-                    // Values below 50% (display as white)
-                    'Less than 25%', '#FFFFFF',
-                    '25-30%', '#FFFFFF',
-                    '30-35%', '#FFFFFF',
-                    '35-40%', '#FFFFFF',
-                    '40-45%', '#FFFFFF',
-                    '45-50%', '#FFFFFF',
+                    // Values below 50% with light blue shades
+                    'Less than 25%', '#EAFBFA',
+                    '25-30%', '#D4F6F4',
+                    '30-35%', '#BFF1EE',
+                    '35-40%', '#A9EDEA',
+                    '40-45%', '#9DF4D9',
+                    '45-50%', '#9DF4D9',
                     // Colors for 50% and above
                     '50-55%', '#9DF4D9',
                     '55-60%', '#65EAD0',
