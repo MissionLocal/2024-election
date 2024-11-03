@@ -64,6 +64,10 @@ body {
     font-family: Barlow, sans-serif;
 }
 
+.note {
+    font-family: Barlow, sans-serif;
+}
+
 .popup-header {
     margin: 2px 0; /* Reduce top and bottom margins */
     font-size: 16px; /* Adjust header font size */
