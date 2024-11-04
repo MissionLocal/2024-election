@@ -67,6 +67,7 @@ body {
     gap: 20px; /* Space between the two legend boxes */
     margin: 10px; /* Space between the map and the legends */
     text-align: center;
+    padding-bottom: 10px;
 }
 
 .legend-item {
