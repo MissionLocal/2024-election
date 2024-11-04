@@ -91,7 +91,6 @@ body {
     }
 }
 
-
 #details {
     font-family: 'Barlow', sans-serif;
     font-size: 14px;
@@ -112,8 +111,6 @@ body {
     position: relative;
     padding-right: 30px; /* Space for arrow */
 }
-
-
 
 .popup-header {
     margin: 2px 0; /* Reduce top and bottom margins */
