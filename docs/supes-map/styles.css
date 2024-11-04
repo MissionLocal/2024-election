@@ -92,9 +92,10 @@ body {
 }
 
 
-
-
-
+#details {
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+}
 
 #propositionDropdown {
     font-size: 20px; /* Increase font size for better readability */
@@ -122,7 +123,7 @@ body {
 
 .popup-text {
     margin: 2px 0; /* Reduce margins on text elements */
-    font-size: 16px; /* Adjust text font size */
+    font-size: 14px; /* Adjust text font size */
     line-height: 1.2; /* Adjust line height */
     font-family: Barlow, sans-serif;
 

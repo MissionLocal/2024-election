@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     let currentPopup; // Variable to hold the current popup reference
+    let currentDistrict = 'District 1'; // Set this based on user selection
 
     // Map load event
     map.on('load', () => {
@@ -71,6 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     'h_brown', '#d896ff',
                     'roberto_hernandez', '#efbe25',
                     'trevor_chandler', '#57a4ea',
+                    'stephen_jon_torres', '#e6e6e6',
 
                     // District 11
                     'roger_k_marenco', '#ed43e5',
@@ -87,7 +89,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 'fill-opacity': 0.6
             }
         });
-
 
         // Add a base outline for the precincts
         map.addLayer({
@@ -129,6 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Dropdown for updating districts
         document.getElementById('propositionDropdown').addEventListener('change', (event) => {
             const selectedProp = event.target.value;
+            currentDistrict = `District ${selectedProp}`; // Update current district
 
             // Map data URL based on selection
             const dataUrl = `data/${selectedProp}.geojson`;
@@ -193,15 +195,112 @@ document.addEventListener('DOMContentLoaded', function () {
                 selectedLegend.style.display = 'block';
             }
         });
+        map.on('click', 'precincts-layer', function (e) {
+            if (e.features.length > 0) {
+                const properties = e.features[0].properties;
+                console.log(e);
+
+                // Initialize the content with basic precinct information
+                let content = `
+                    <div style="background-color: white; padding: 5px; border-radius: 2.5px; font-size: 12px; line-height: 1.2;">
+                        <h3 class="popup-header" style="margin: 2px 0; font-size: 16px;">Precinct ${properties.precinct || 'N/A'}</h3>
+                        <hr style="margin: 5px 0;">
+                `;
+
+                // Check if the district is District 1 and append candidate percentages
+                if (currentDistrict === 'District 1') {
+                    content += `
+                        <p class="popup-text" style="margin: 2px 0;">Sherman D'Silva: ${properties['sherman_d\'silva_p']}% (${properties['sherman_d\'silva']})</p>
+                        <p class="popup-text" style="margin: 2px 0;">Marjan Philhour: ${properties['marjan_philhour_p']}% (${properties['marjan_philhour']})</p>
+                        <p class="popup-text" style="margin: 2px 0;">Connie Chan: ${properties['connie_chan_p']}% (${properties['connie_chan']})</p>
+                        <p class="popup-text" style="margin: 2px 0;">Jeremiah Boehner: ${properties['jeremiah_boehner_p']}% (${properties['jeremiah_boehner']})</p>
+                        <p class="popup-text" style="margin: 2px 0;">Jen Nossokoff: ${properties['jen_nossokoff_p']}% (${properties['jen_nossokoff']})</p>
+                    `;
+                }
+                // Check if the district is District 3 and append candidate percentages
+                else if (currentDistrict === 'District 3') {
+                    content += `
+                        <p class="popup-text" style="margin: 2px 0;">Sharon Lai: ${properties['sharon_lai_p']}% (${properties['sharon_lai']})</p>
+                        <p class="popup-text" style="margin: 2px 0;">Moe Jamil: ${properties['moe_jamil_p']}% (${properties['moe_jamil']})</p>
+                        <p class="popup-text" style="margin: 2px 0;">Wendy Ha Chau: ${properties['wendy_ha_chau_p']}% (${properties['wendy_ha_chau']})</p>
+                        <p class="popup-text" style="margin: 2px 0;">Eduard Navarro: ${properties['eduard_navarro_p']}% (${properties['eduard_navarro']})</p>
+                        <p class="popup-text" style="margin: 2px 0;">Danny Sauter: ${properties['danny_sauter_p']}% (${properties['danny_sauter']})</p>
+                        <p class="popup-text" style="margin: 2px 0;">Matthew Susk: ${properties['matthew_susk_p']}% (${properties['matthew_susk']})</p>
+                    `;
+                }
+                // Check if the district is District 5 and append candidate percentages
+                else if (currentDistrict === 'District 5') {
+                    content += `
+                        <p class="popup-text" style="margin: 2px 0;">Autumn Hope Looijen: ${properties['autumn_hope_looijen_p']}% (${properties['autumn_hope_looijen']})</p>
+                        <p class="popup-text" style="margin: 2px 0;">Bilal Mahmood: ${properties['bilal_mahmood_p']}% (${properties['biden_mahmood']})</p>
+                        <p class="popup-text" style="margin: 2px 0;">Scotty Jacobs: ${properties['scotty_jacobs_p']}% (${properties['scotty_jacobs']})</p>
+                        <p class="popup-text" style="margin: 2px 0;">Allen Jones: ${properties['allen_jones_p']}% (${properties['allen_jones']})</p>
+                        <p class="popup-text" style="margin: 2px 0;">Dean Preston: ${properties['dean_preston_p']}% (${properties['dean_preston']})</p>
+                    `;
+                }
+
+                // Check if the district is District 5 and append candidate percentages
+                else if (currentDistrict === 'District 7') {
+                    content += `
+                        <p class="popup-text" style="margin: 2px 0;">Myrna Melgar: ${properties['myrna_melgar_p']}% (${properties['myrna_melgar']})</p>
+                        <p class="popup-text" style="margin: 2px 0;">Matt Boschetto: ${properties['matt_boschetto_p']}% (${properties['matt_boschetto']})</p>
+                        <p class="popup-text" style="margin: 2px 0;">Stephen Martin-Pinto: ${properties['stephen_martin-pinto_p']}% (${properties['stephen_martin-pinto']})</p>
+                        <p class="popup-text" style="margin: 2px 0;">Edward S. Yee: ${properties['edward_s_yee_p']}% (${properties['edward_s_yee']})</p>
+                    `;
+                }
+
+                // Check if the district is District 9 and append candidate percentages
+                else if (currentDistrict === 'District 9') {
+                    content += `
+                        <p class="popup-text" style="margin: 2px 0;">Jackie Fielder: ${properties['jackie_fielder_p']}% (${properties['jackie_fielder']})</p>
+                        <p class="popup-text" style="margin: 2px 0;">Stephen Torres: ${properties['stephen_jon_torres_p']}% (${properties['stephen_jon_torres']})</p>
+                        <p class="popup-text" style="margin: 2px 0;">Roberto Hernandez: ${properties['roberto_hernandez_p']}% (${properties['roberto_hernandez']})</p>
+                        <p class="popup-text" style="margin: 2px 0;">Jaime Gutierrez: ${properties['jaime_gutierrez_p']}% (${properties['jaime_gutierrez']})</p>
+                        <p class="popup-text" style="margin: 2px 0;">Trevor Chandler: ${properties['trevor_chandler_p']}% (${properties['trevor_chandler']})</p>
+                        <p class="popup-text" style="margin: 2px 0;">Julian Bermudez: ${properties['julian_bermudez_p']}% (${properties['julian_bermudez']})</p>
+                        <p class="popup-text" style="margin: 2px 0;">H. Brown: ${properties['h_brown_p']}% (${properties['h_brown']})</p>
+                    `;
+                }
+
+                // Check if the district is District 11 and append candidate percentages
+                else if (currentDistrict === 'District 11') {
+                    content += `
+                        <p class="popup-text" style="margin: 2px 0;">Oscar Flores: ${properties['oscar_flores_p']}% (${properties['oscar_flores']})</p>
+                        <p class="popup-text" style="margin: 2px 0;">Michael Lai: ${properties['michael_lai_p']}% (${properties['michael_lai']})</p>
+                        <p class="popup-text" style="margin: 2px 0;">Roger Marenco: ${properties['roger_k_marenco_p']}% (${properties['roger_k_marenco']})</p>
+                        <p class="popup-text" style="margin: 2px 0;">Jose Morales: ${properties['jose_morales_p']}% (${properties['jose_morales']})</p>
+                        <p class="popup-text" style="margin: 2px 0;">Ernest EJ Jones: ${properties['ernest_ej_jones_p']}% (${properties['ernest_ej_jones']})</p>
+                        <p class="popup-text" style="margin: 2px 0;">Adlah Chisti: ${properties['adlah_chisti_p']}% (${properties['adlah_chisti']})</p>
+                        <p class="popup-text" style="margin: 2px 0;">Chyanne Chen: ${properties['chyanne_chen_p']}% (${properties['chyanne_chen']})</p>
+                    `;
+                }
+
+                content += '</div>'; // Close the content div
+
+
+                // Close the current popup if it exists
+                if (currentPopup) {
+                    currentPopup.remove();
+                }
+
+                // Create and add the new popup
+                currentPopup = new mapboxgl.Popup()
+                    .setLngLat(e.lngLat)
+                    .setHTML(content)
+                    .addTo(map);
+            } else {
+                console.warn("No features found at clicked location.");
+            }
+        });
 
 
 
-        // Bring specific labels to the front
-        map.moveLayer('road-label-navigation');
-        map.moveLayer('settlement-subdivision-label');
+        // Resize the map when the window is resized
+        window.addEventListener('resize', () => {
+            map.resize();
+        });
 
-        // Resize iframe when charts are drawn
+        // Send the map data to Pym.js for responsive design
         pymChild.sendHeight();
     });
-
 });
