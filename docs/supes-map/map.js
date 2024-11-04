@@ -207,77 +207,303 @@ document.addEventListener('DOMContentLoaded', function () {
                         <hr style="margin: 5px 0;">
                 `;
 
-                // Check if the district is District 1 and append candidate percentages
                 if (currentDistrict === 'District 1') {
-                    content += `
-                        <p class="popup-text" style="margin: 2px 0;">Sherman D'Silva: ${properties['sherman_d\'silva_p']}% (${properties['sherman_d\'silva']})</p>
-                        <p class="popup-text" style="margin: 2px 0;">Marjan Philhour: ${properties['marjan_philhour_p']}% (${properties['marjan_philhour']})</p>
-                        <p class="popup-text" style="margin: 2px 0;">Connie Chan: ${properties['connie_chan_p']}% (${properties['connie_chan']})</p>
-                        <p class="popup-text" style="margin: 2px 0;">Jeremiah Boehner: ${properties['jeremiah_boehner_p']}% (${properties['jeremiah_boehner']})</p>
-                        <p class="popup-text" style="margin: 2px 0;">Jen Nossokoff: ${properties['jen_nossokoff_p']}% (${properties['jen_nossokoff']})</p>
-                    `;
-                }
-                // Check if the district is District 3 and append candidate percentages
-                else if (currentDistrict === 'District 3') {
-                    content += `
-                        <p class="popup-text" style="margin: 2px 0;">Sharon Lai: ${properties['sharon_lai_p']}% (${properties['sharon_lai']})</p>
-                        <p class="popup-text" style="margin: 2px 0;">Moe Jamil: ${properties['moe_jamil_p']}% (${properties['moe_jamil']})</p>
-                        <p class="popup-text" style="margin: 2px 0;">Wendy Ha Chau: ${properties['wendy_ha_chau_p']}% (${properties['wendy_ha_chau']})</p>
-                        <p class="popup-text" style="margin: 2px 0;">Eduard Navarro: ${properties['eduard_navarro_p']}% (${properties['eduard_navarro']})</p>
-                        <p class="popup-text" style="margin: 2px 0;">Danny Sauter: ${properties['danny_sauter_p']}% (${properties['danny_sauter']})</p>
-                        <p class="popup-text" style="margin: 2px 0;">Matthew Susk: ${properties['matthew_susk_p']}% (${properties['matthew_susk']})</p>
-                    `;
-                }
-                // Check if the district is District 5 and append candidate percentages
-                else if (currentDistrict === 'District 5') {
-                    content += `
-                        <p class="popup-text" style="margin: 2px 0;">Autumn Hope Looijen: ${properties['autumn_hope_looijen_p']}% (${properties['autumn_hope_looijen']})</p>
-                        <p class="popup-text" style="margin: 2px 0;">Bilal Mahmood: ${properties['bilal_mahmood_p']}% (${properties['biden_mahmood']})</p>
-                        <p class="popup-text" style="margin: 2px 0;">Scotty Jacobs: ${properties['scotty_jacobs_p']}% (${properties['scotty_jacobs']})</p>
-                        <p class="popup-text" style="margin: 2px 0;">Allen Jones: ${properties['allen_jones_p']}% (${properties['allen_jones']})</p>
-                        <p class="popup-text" style="margin: 2px 0;">Dean Preston: ${properties['dean_preston_p']}% (${properties['dean_preston']})</p>
-                    `;
-                }
+                    const candidates = [
+                        {
+                            name: "Sherman D'Silva",
+                            percent: properties['sherman_d\'silva_p'],
+                            votes: properties['sherman_d\'silva'],
+                            key: 'sherman_d\'silva'
+                        },
+                        {
+                            name: "Marjan Philhour",
+                            percent: properties['marjan_philhour_p'],
+                            votes: properties['marjan_philhour'],
+                            key: 'marjan_philhour'
+                        },
+                        {
+                            name: "Connie Chan",
+                            percent: properties['connie_chan_p'],
+                            votes: properties['connie_chan'],
+                            key: 'connie_chan'
+                        },
+                        {
+                            name: "Jeremiah Boehner",
+                            percent: properties['jeremiah_boehner_p'],
+                            votes: properties['jeremiah_boehner'],
+                            key: 'jeremiah_boehner'
+                        },
+                        {
+                            name: "Jen Nossokoff",
+                            percent: properties['jen_nossokoff_p'],
+                            votes: properties['jen_nossokoff'],
+                            key: 'jen_nossokoff'
+                        }
+                    ];
+                
+                    const winner = candidates.reduce((max, candidate) => (candidate.votes > max.votes ? candidate : max), candidates[0]);
+                
+                    candidates.forEach(candidate => {
+                        content += `
+                            <p class="popup-text" style="margin: 2px 0;">
+                                ${winner.key === candidate.key ? `<strong>${candidate.name}</strong>` : candidate.name}:
+                                ${winner.key === candidate.key ? `<strong>${candidate.percent}%</strong>` : candidate.percent + '%'}
+                                (${winner.key === candidate.key ? `<strong>${candidate.votes}</strong>` : candidate.votes})
+                            </p>
+                        `;
+                    });
 
-                // Check if the district is District 5 and append candidate percentages
-                else if (currentDistrict === 'District 7') {
-                    content += `
-                        <p class="popup-text" style="margin: 2px 0;">Myrna Melgar: ${properties['myrna_melgar_p']}% (${properties['myrna_melgar']})</p>
-                        <p class="popup-text" style="margin: 2px 0;">Matt Boschetto: ${properties['matt_boschetto_p']}% (${properties['matt_boschetto']})</p>
-                        <p class="popup-text" style="margin: 2px 0;">Stephen Martin-Pinto: ${properties['stephen_martin-pinto_p']}% (${properties['stephen_martin-pinto']})</p>
-                        <p class="popup-text" style="margin: 2px 0;">Edward S. Yee: ${properties['edward_s_yee_p']}% (${properties['edward_s_yee']})</p>
-                    `;
-                }
-
-                // Check if the district is District 9 and append candidate percentages
-                else if (currentDistrict === 'District 9') {
-                    content += `
-                        <p class="popup-text" style="margin: 2px 0;">Jackie Fielder: ${properties['jackie_fielder_p']}% (${properties['jackie_fielder']})</p>
-                        <p class="popup-text" style="margin: 2px 0;">Stephen Torres: ${properties['stephen_jon_torres_p']}% (${properties['stephen_jon_torres']})</p>
-                        <p class="popup-text" style="margin: 2px 0;">Roberto Hernandez: ${properties['roberto_hernandez_p']}% (${properties['roberto_hernandez']})</p>
-                        <p class="popup-text" style="margin: 2px 0;">Jaime Gutierrez: ${properties['jaime_gutierrez_p']}% (${properties['jaime_gutierrez']})</p>
-                        <p class="popup-text" style="margin: 2px 0;">Trevor Chandler: ${properties['trevor_chandler_p']}% (${properties['trevor_chandler']})</p>
-                        <p class="popup-text" style="margin: 2px 0;">Julian Bermudez: ${properties['julian_bermudez_p']}% (${properties['julian_bermudez']})</p>
-                        <p class="popup-text" style="margin: 2px 0;">H. Brown: ${properties['h_brown_p']}% (${properties['h_brown']})</p>
-                    `;
-                }
-
-                // Check if the district is District 11 and append candidate percentages
-                else if (currentDistrict === 'District 11') {
-                    content += `
-                        <p class="popup-text" style="margin: 2px 0;">Oscar Flores: ${properties['oscar_flores_p']}% (${properties['oscar_flores']})</p>
-                        <p class="popup-text" style="margin: 2px 0;">Michael Lai: ${properties['michael_lai_p']}% (${properties['michael_lai']})</p>
-                        <p class="popup-text" style="margin: 2px 0;">Roger Marenco: ${properties['roger_k_marenco_p']}% (${properties['roger_k_marenco']})</p>
-                        <p class="popup-text" style="margin: 2px 0;">Jose Morales: ${properties['jose_morales_p']}% (${properties['jose_morales']})</p>
-                        <p class="popup-text" style="margin: 2px 0;">Ernest EJ Jones: ${properties['ernest_ej_jones_p']}% (${properties['ernest_ej_jones']})</p>
-                        <p class="popup-text" style="margin: 2px 0;">Adlah Chisti: ${properties['adlah_chisti_p']}% (${properties['adlah_chisti']})</p>
-                        <p class="popup-text" style="margin: 2px 0;">Chyanne Chen: ${properties['chyanne_chen_p']}% (${properties['chyanne_chen']})</p>
-                    `;
-                }
-
-                content += '</div>'; // Close the content div
-
-
+                } else if (currentDistrict === 'District 3') {
+                    const candidates = [
+                        {
+                            name: "Sharon Lai",
+                            percent: properties['sharon_lai_p'],
+                            votes: properties['sharon_lai'],
+                            key: 'sharon_lai'
+                        },
+                        {
+                            name: "Moe Jamil",
+                            percent: properties['moe_jamil_p'],
+                            votes: properties['moe_jamil'],
+                            key: 'moe_jamil'
+                        },
+                        {
+                            name: "Wendy Ha Chau",
+                            percent: properties['wendy_ha_chau_p'],
+                            votes: properties['wendy_ha_chau'],
+                            key: 'wendy_ha_chau'
+                        },
+                        {
+                            name: "Eduard Navarro",
+                            percent: properties['eduard_navarro_p'],
+                            votes: properties['eduard_navarro'],
+                            key: 'eduard_navarro'
+                        },
+                        {
+                            name: "Danny Sauter",
+                            percent: properties['danny_sauter_p'],
+                            votes: properties['danny_sauter'],
+                            key: 'danny_sauter'
+                        },
+                        {
+                            name: "Matthew Susk",
+                            percent: properties['matthew_susk_p'],
+                            votes: properties['matthew_susk'],
+                            key: 'matthew_susk'
+                        }
+                    ];
+                
+                    const winner = candidates.reduce((max, candidate) => (candidate.votes > max.votes ? candidate : max), candidates[0]);
+                
+                    candidates.forEach(candidate => {
+                        content += `
+                            <p class="popup-text" style="margin: 2px 0;">
+                                ${winner.key === candidate.key ? `<strong>${candidate.name}</strong>` : candidate.name}:
+                                ${winner.key === candidate.key ? `<strong>${candidate.percent}%</strong>` : candidate.percent + '%'}
+                                (${winner.key === candidate.key ? `<strong>${candidate.votes}</strong>` : candidate.votes})
+                            </p>
+                        `;
+                    });                
+                } else if (currentDistrict === 'District 5') {
+                    const candidates = [
+                        {
+                            name: "Autumn Hope Looijen",
+                            percent: properties['autumn_hope_looijen_p'],
+                            votes: properties['autumn_hope_looijen'],
+                            key: 'autumn_hope_looijen'
+                        },
+                        {
+                            name: "Bilal Mahmood",
+                            percent: properties['bilal_mahmood_p'],
+                            votes: properties['bilal_mahmood'],
+                            key: 'bilal_mahmood'
+                        },
+                        {
+                            name: "Scotty Jacobs",
+                            percent: properties['scotty_jacobs_p'],
+                            votes: properties['scotty_jacobs'],
+                            key: 'scotty_jacobs'
+                        },
+                        {
+                            name: "Allen Jones",
+                            percent: properties['allen_jones_p'],
+                            votes: properties['allen_jones'],
+                            key: 'allen_jones'
+                        },
+                        {
+                            name: "Dean Preston",
+                            percent: properties['dean_preston_p'],
+                            votes: properties['dean_preston'],
+                            key: 'dean_preston'
+                        }
+                    ];
+                
+                    const winner = candidates.reduce((max, candidate) => (candidate.votes > max.votes ? candidate : max), candidates[0]);
+                
+                    candidates.forEach(candidate => {
+                        content += `
+                            <p class="popup-text" style="margin: 2px 0;">
+                                ${winner.key === candidate.key ? `<strong>${candidate.name}</strong>` : candidate.name}:
+                                ${winner.key === candidate.key ? `<strong>${candidate.percent}%</strong>` : candidate.percent + '%'}
+                                (${winner.key === candidate.key ? `<strong>${candidate.votes}</strong>` : candidate.votes})
+                            </p>
+                        `;
+                    });                
+                } else if (currentDistrict === 'District 7') {
+                    const candidates = [
+                        {
+                            name: "Myrna Melgar",
+                            percent: properties['myrna_melgar_p'],
+                            votes: properties['myrna_melgar'],
+                            key: 'myrna_melgar'
+                        },
+                        {
+                            name: "Stephen Martin-Pinto",
+                            percent: properties['stephen_martin-pinto_p'],
+                            votes: properties['stephen_martin-pinto'],
+                            key: 'stephen_martin-pinto'
+                        },
+                        {
+                            name: "Edward S. Yee",
+                            percent: properties['edward_s_yee_p'],
+                            votes: properties['edward_s_yee'],
+                            key: 'edward_s_yee'
+                        },
+                        {
+                            name: "Matt Boschetto",
+                            percent: properties['matt_boschetto_p'],
+                            votes: properties['matt_boschetto'],
+                            key: 'matt_boschetto'
+                        }
+                    ];
+                
+                    const winner = candidates.reduce((max, candidate) => (candidate.votes > max.votes ? candidate : max), candidates[0]);
+                
+                    candidates.forEach(candidate => {
+                        content += `
+                            <p class="popup-text" style="margin: 2px 0;">
+                                ${winner.key === candidate.key ? `<strong>${candidate.name}</strong>` : candidate.name}:
+                                ${winner.key === candidate.key ? `<strong>${candidate.percent}%</strong>` : candidate.percent + '%'}
+                                (${winner.key === candidate.key ? `<strong>${candidate.votes}</strong>` : candidate.votes})
+                            </p>
+                        `;
+                    });
+                } else if (currentDistrict === 'District 9') {
+                    const candidates = [
+                        {
+                            name: "Jackie Fielder",
+                            percent: properties['jackie_fielder_p'],
+                            votes: properties['jackie_fielder'],
+                            key: 'jackie_fielder'
+                        },
+                        {
+                            name: "Stephen Jon Torres",
+                            percent: properties['stephen_jon_torres_p'],
+                            votes: properties['stephen_jon_torres'],
+                            key: 'stephen_jon_torres'
+                        },
+                        {
+                            name: "Roberto Hernandez",
+                            percent: properties['roberto_hernandez_p'],
+                            votes: properties['roberto_hernandez'],
+                            key: 'roberto_hernandez'
+                        },
+                        {
+                            name: "Jaime Gutierrez",
+                            percent: properties['jaime_gutierrez_p'],
+                            votes: properties['jaime_gutierrez'],
+                            key: 'jaime_gutierrez'
+                        },
+                        {
+                            name: "Trevor Chandler",
+                            percent: properties['trevor_chandler_p'],
+                            votes: properties['trevor_chandler'],
+                            key: 'trevor_chandler'
+                        },
+                        {
+                            name: "Julian Bermudez",
+                            percent: properties['julian_bermudez_p'],
+                            votes: properties['julian_bermudez'],
+                            key: 'julian_bermudez'
+                        },
+                        {
+                            name: "H. Brown",
+                            percent: properties['h_brown_p'],
+                            votes: properties['h_brown'],
+                            key: 'h_brown'
+                        }
+                    ];
+                
+                    const winner = candidates.reduce((max, candidate) => (candidate.votes > max.votes ? candidate : max), candidates[0]);
+                                
+                    candidates.forEach(candidate => {
+                        content += `
+                            <p class="popup-text" style="margin: 2px 0;">
+                                ${winner.key === candidate.key ? `<strong>${candidate.name}</strong>` : candidate.name}:
+                                ${winner.key === candidate.key ? `<strong>${candidate.percent}%</strong>` : candidate.percent + '%'}
+                                (${winner.key === candidate.key ? `<strong>${candidate.votes}</strong>` : candidate.votes})
+                            </p>
+                        `;
+                    });
+                } else if (currentDistrict === 'District 11') {
+                    const candidates = [
+                        {
+                            name: "Oscar Flores",
+                            percent: properties['oscar_flores_p'],
+                            votes: properties['oscar_flores'],
+                            key: 'oscar_flores'
+                        },
+                        {
+                            name: "Michael Lai",
+                            percent: properties['michael_lai_p'],
+                            votes: properties['michael_lai'],
+                            key: 'michael_lai'
+                        },
+                        {
+                            name: "Roger K. Marenco",
+                            percent: properties['roger_k_marenco_p'],
+                            votes: properties['roger_k_marenco'],
+                            key: 'roger_k_marenco'
+                        },
+                        {
+                            name: "Jose Morales",
+                            percent: properties['jose_morales_p'],
+                            votes: properties['jose_morales'],
+                            key: 'jose_morales'
+                        },
+                        {
+                            name: "Ernest E.J. Jones",
+                            percent: properties['ernest_ej_jones_p'],
+                            votes: properties['ernest_ej_jones'],
+                            key: 'ernest_ej_jones'
+                        },
+                        {
+                            name: "Adlah Chisti",
+                            percent: properties['adlah_chisti_p'],
+                            votes: properties['adlah_chisti'],
+                            key: 'adlah_chisti'
+                        },
+                        {
+                            name: "Chyanne Chen",
+                            percent: properties['chyanne_chen_p'],
+                            votes: properties['chyanne_chen'],
+                            key: 'chyanne_chen'
+                        }
+                    ];
+                
+                    const winner = candidates.reduce((max, candidate) => (candidate.votes > max.votes ? candidate : max), candidates[0]);
+                                
+                    candidates.forEach(candidate => {
+                        content += `
+                            <p class="popup-text" style="margin: 2px 0;">
+                                ${winner.key === candidate.key ? `<strong>${candidate.name}</strong>` : candidate.name}:
+                                ${winner.key === candidate.key ? `<strong>${candidate.percent}%</strong>` : candidate.percent + '%'}
+                                (${winner.key === candidate.key ? `<strong>${candidate.votes}</strong>` : candidate.votes})
+                            </p>
+                        `;
+                    });
+                }                
+                               
                 // Close the current popup if it exists
                 if (currentPopup) {
                     currentPopup.remove();
@@ -292,8 +518,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.warn("No features found at clicked location.");
             }
         });
-
-
 
         // Resize the map when the window is resized
         window.addEventListener('resize', () => {
