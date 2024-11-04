@@ -42,18 +42,45 @@ body {
 
 .legend-labels {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    flex-direction: column; /* Stack items vertically */
     margin-top: 5px;
     font-family: Barlow, sans-serif;
-
 }
+
+#legend-district1 {
+    display: block; /* Display only legend-district1 by default */
+}
+
+.legend {
+    background-color: white;
+    border-radius: 4px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: fit-content;
+    font-family: Barlow, sans-serif;
+    display: none; /* Hide all legend elements by default */
+}
+
 .legend-container {
     display: flex;
     justify-content: center;
     gap: 20px; /* Space between the two legend boxes */
     margin: 10px; /* Space between the map and the legends */
 }
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.color-box {
+    width: 20px;  /* Width of the color box */
+    height: 20px; /* Height of the color box */
+    margin-right: 10px; /* Space between color box and text */
+    opacity: 0.6;
+}
+
 
 /* Mobile Styles */
 @media (max-width: 768px) {
@@ -63,18 +90,9 @@ body {
     }
 }
 
-.color-scale { 
-    max-height: 50px;
-}
 
-#legend {
-    background-color: white;
-    border-radius: 4px;
-    padding: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: fit-content;
-    font-family: Barlow, sans-serif;
-}
+
+
 
 
 #propositionDropdown {
