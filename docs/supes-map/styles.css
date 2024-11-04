@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    padding-bottom: 20px;
+    padding-bottom: 5px;
 }
 
 #map {
@@ -22,6 +22,7 @@ body {
 .instruction-wrapper {
     align-items: left !important; 
 }
+
 
 .instruction { 
     font-size: 16px;
