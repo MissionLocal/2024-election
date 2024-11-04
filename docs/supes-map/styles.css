@@ -63,12 +63,15 @@ body {
 
 .legend-container {
     display: flex;
-    justify-content: center;
+    justify-content: center !important;
     gap: 20px; /* Space between the two legend boxes */
-    margin: 10px; /* Space between the map and the legends */
+    margin: 10px auto; /* Center with auto margins */
     text-align: center;
     padding-bottom: 10px;
+    width: 100%; /* Full width of the parent container */
+    max-width: 400px; /* Limit width for better readability */
 }
+
 
 .legend-item {
     display: flex;
