@@ -1,4 +1,7 @@
 $(document).ready(function () {
+    // Initialize Pym.js first
+    var pymChild = new pym.Child();
+
     // Load the CSV file
     Papa.parse('candidates.csv', {
         download: true,
@@ -33,23 +36,19 @@ $(document).ready(function () {
             const halfRows = Math.floor(totalRows / 2);
             $('#electionResults tbody tr').slice(halfRows).hide(); // Hide the second half
 
+            // Send the initial height to Pym.js
+            pymChild.sendHeight();
+
             // Toggle visibility of the second half on button click
             $('#toggleTable').click(function () {
                 $('#electionResults tbody tr').slice(halfRows).toggle(); // Toggle the visibility of the second half
-                // Update Pym.js after toggling the table
-                pymChild.sendHeight();
+                pymChild.sendHeight(); // Update Pym.js after toggling the table
             });
-
-            // Initialize Pym.js
-            var pymChild = new pym.Child();
 
             // Resize Pym.js on window resize
             $(window).on('resize', function () {
                 pymChild.sendHeight();
             });
-
-            // Send the initial height to Pym.js
-            pymChild.sendHeight();
         }
     });
 });
