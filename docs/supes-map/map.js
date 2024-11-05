@@ -194,6 +194,9 @@ document.addEventListener('DOMContentLoaded', function () {
             if (selectedLegend) {
                 selectedLegend.style.display = 'block';
             }
+
+            pymChild.sendHeight();
+
         });
 
         map.on('click', 'precincts-layer', function (e) {
