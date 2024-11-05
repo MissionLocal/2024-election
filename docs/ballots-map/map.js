@@ -61,16 +61,29 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('propositionDropdown').addEventListener('change', (event) => {
             const selectedProp = event.target.value.charAt(0); // Get the first letter of the selected value
             const dataUrl = `data/${selectedProp}.geojson`; // Update with the correct path to your GeoJSON files
-
+        
             // Close the current popup if it exists
             if (currentPopup) {
                 currentPopup.remove();
                 currentPopup = null; // Reset the popup reference
             }
-
+        
             // Update the precincts source data to the new file based on the selected proposition
             map.getSource('precincts').setData(dataUrl);
+        
+            // Hide all legends first
+            const legends = document.querySelectorAll('.legend');
+            legends.forEach(legend => {
+                legend.style.display = 'none';
+            });
+        
+            // Show the selected legend
+            const selectedLegend = document.getElementById(`legend-${selectedProp}`);
+            if (selectedLegend) {
+                selectedLegend.style.display = 'block'; // Show the selected legend
+            }
         });
+        
 
         // Add a base outline for the precincts
         map.addLayer({
@@ -114,9 +127,13 @@ document.addEventListener('DOMContentLoaded', function () {
             map.setFilter('precincts-hover-outline', ['==', ['get', 'precinct'], '']);
         });
 
+
+
+
         // Once the charts are drawn, call pymChild.sendHeight() to resize the iframe
         pymChild.sendHeight();
     });
+
 
     map.on('click', 'precincts-layer', function (e) {
         if (e.features.length > 0) {
