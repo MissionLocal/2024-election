@@ -1,6 +1,6 @@
 # hide folder 
 
-/cleaning/
+cleaning/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
