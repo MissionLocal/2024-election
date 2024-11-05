@@ -39,6 +39,11 @@
     border-collapse: collapse;
     border: 1px solid #ddd; /* Border around the table */
     width: 100%; /* Make sure table fits the container */
+
+}
+
+#electionResults thead th {
+    font-weight: normal; /* Ensure header cells are not bold */
 }
 
 /* Basic styling for cells */
@@ -58,6 +63,18 @@ body, #electionResults {
 
 #electionResults tbody tr:hover {
     background-color: #f1f1f1; /* Light gray background on hover */
+}
+
+button { 
+        appearance: none !important; /* Remove default appearance */
+        font-size: 16px; /* Increase font size for better readability */
+        border-radius: 5px; /* Rounded corners */
+        border: 0px solid gray; /* Border for visibility */
+        font-family: Barlow, sans-serif;
+        justify-content: center;
+        background-color: white; /* Match legend background */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+        appearance: none; /* Remove default styling in some browsers */
 }
 
 /* Responsive font adjustments */
