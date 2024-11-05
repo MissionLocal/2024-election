@@ -35,11 +35,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 'fill-color': [
                     'match',
                     ['get', 'winner'],
-                    'london_breed','#65ead0'
-                    
-
-                ]
-                ,
+                    'london_breed', '#65ead0',
+                    'daniel_lurie', '#efbe25',
+                    'mark_farrell', '#d896ff',
+                    'ahsha_safaí_', '#ed43e5',
+                    'aaron_peskin', '#57a4ea',
+                    /* Default color for cases without a match */
+                    '#cccccc' // Light grey as default
+                ],
                 'fill-opacity': 0.6
             }
         });
@@ -88,24 +91,67 @@ document.addEventListener('DOMContentLoaded', function () {
     map.on('click', 'precincts-layer', function (e) {
         if (e.features.length > 0) {
             const properties = e.features[0].properties;
-            const yesPerc = properties.yes_perc ? Number(properties.yes_perc) : 0;
-            const noPerc = 100 - yesPerc;
-
-            const content = `
+    
+            // Retrieve both percentages and raw vote counts for each candidate
+            const candidates = {
+                'London Breed': {
+                    percentage: properties.london_breed_p || 0,
+                    votes: properties.london_breed || 0
+                },
+                'Mark Farrell': {
+                    percentage: properties.mark_farrell_p || 0,
+                    votes: properties.mark_farrell || 0
+                },
+                'Daniel Lurie': {
+                    percentage: properties.daniel_lurie_p || 0,
+                    votes: properties.daniel_lurie || 0
+                },
+                'Aaron Peskin': {
+                    percentage: properties.aaron_peskin_p || 0,
+                    votes: properties.aaron_peskin || 0
+                },
+                'Ahsha Safaí': {
+                    percentage: properties.ahsha_safaí__p || 0,
+                    votes: properties.ahsha_safaí_ || 0
+                }
+               
+            };
+    
+            // Find the candidate with the highest percentage
+            const highestCandidate = Object.keys(candidates).reduce((a, b) =>
+                candidates[a].percentage > candidates[b].percentage ? a : b
+            );
+    
+            // Construct the popup content, highlighting the highest percentage
+            let content = `
                 <div style="background-color: white; padding: 5px; border-radius: 2.5px; font-size: 12px; line-height: 1.2;">
                     <h3 class="popup-header" style="margin: 2px 0; font-size: 16px;">Precinct ${properties.precinct || 'N/A'}</h3>
-                    <p class="popup-text" style="margin: 2px 0;">${properties.registered_voters} voters, ${properties.turnout || 'N/A'}% turnout</p>
-                </div>
+                    <p class="popup-text" style="margin: 2px 0;">${properties.registered_voters} voters</p>
+                    <hr>
             `;
-
+    
+            // Add each candidate's percentage and vote count in a <p> tag with popup-text class, highlighting the highest one
+            Object.keys(candidates).forEach(candidate => {
+                const isHighest = candidate === highestCandidate;
+                const { percentage, votes } = candidates[candidate];
+                content += `
+                    <p class="popup-text" style="margin: 2px 0; ${isHighest ? 'font-weight: bold;' : ''}">
+                        ${candidate}: ${percentage}% (${votes} votes)
+                    </p>
+                `;
+            });
+    
+            content += `</div>`;
+    
+            // Remove any existing popup and add the new one
             if (currentPopup) currentPopup.remove();
-
+    
             currentPopup = new mapboxgl.Popup()
                 .setLngLat(e.lngLat)
                 .setHTML(content)
                 .addTo(map);
         }
-    });
+    });    
 
     map.on('load', function () {
         map.moveLayer('road-label-navigation');
