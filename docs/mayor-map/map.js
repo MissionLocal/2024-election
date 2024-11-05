@@ -34,22 +34,10 @@ document.addEventListener('DOMContentLoaded', function () {
             'paint': {
                 'fill-color': [
                     'match',
-                    ['get', 'yes_perc'],
-                    // Values below 50% with light blue shades
-                    'Less than 25%', '#EAFBFA',
-                    '25-30%', '#D4F6F4',
-                    '30-35%', '#BFF1EE',
-                    '35-40%', '#A9EDEA',
-                    '40-45%', '#9DF4D9',
-                    '45-50%', '#9DF4D9',
-                    // Colors for 50% and above
-                    '50-55%', '#9DF4D9',
-                    '55-60%', '#65EAD0',
-                    '60-65%', '#0DD6C7',
-                    '65-70%', '#0DC1D3',
-                    '70-75%', '#00A4BF',
-                    '75% and more', '#007DBC',
-                    '#CECECE' // Default color for any values not covered
+                    ['get', 'winner'],
+                    'london_breed','#65ead0'
+                    
+
                 ]
                 ,
                 'fill-opacity': 0.6
