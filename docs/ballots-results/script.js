@@ -33,7 +33,7 @@ data.forEach((d) => {
     // Set SVG dimensions
     const svg = container.append("svg")
         .attr("width", width + 100) // Extra space for labels and values
-        .attr("height", 70); // Fixed height for each chart
+        .attr("height", 70) // Fixed height for each chart
 
     // Add labels for "Yes" and "No"
     svg.selectAll(".label")
