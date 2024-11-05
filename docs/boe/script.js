@@ -36,6 +36,8 @@ $(document).ready(function () {
             // Toggle visibility of the second half on button click
             $('#toggleTable').click(function () {
                 $('#electionResults tbody tr').slice(halfRows).toggle(); // Toggle the visibility of the second half
+                // Update Pym.js after toggling the table
+                pymChild.sendHeight();
             });
 
             // Initialize Pym.js
