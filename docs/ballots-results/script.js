@@ -72,7 +72,7 @@ data.forEach((d) => {
     // Label for threshold (only for Proposition A as before)
     if (d.Proposition === "A") {
         svg.append("text")
-            .attr("x", 32 + xScale(d.threshold))
+            .attr("x", 55 + xScale(d.threshold))
             .attr("y", 19) // Moved down by 2px to align with the labels
             .text("% required")
             .attr("fill", "black")
