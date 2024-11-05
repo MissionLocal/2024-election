@@ -21,6 +21,9 @@ $(document).ready(function () {
                         <td style="background-color: ${bgColor}; text-align: center;">${row.percentage}</td>
                     </tr>`
                 );
+
+                pymChild.sendHeight();
+
             });
 
             // Initialize DataTables
