@@ -522,12 +522,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         // Resize the map when the window is resized
-        
+
         window.addEventListener('resize', () => {
             map.resize();
         });
 
+
+
+
         // Send the map data to Pym.js for responsive design
         pymChild.sendHeight();
+    });
+
+    map.on('load', function () {
+        map.moveLayer('road-label-navigation');
+        map.moveLayer('settlement-subdivision-label');
     });
 });
