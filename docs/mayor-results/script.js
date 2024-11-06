@@ -25,6 +25,9 @@ document.addEventListener('DOMContentLoaded', function () {
             d.Value = +d.Value; // Ensure Value is treated as a number
         });
 
+        // Find the max value in the dataset
+        const maxValue = d3.max(data, d => d.Value);
+
         // Set up a single SVG container for all bars
         const barHeight = 30; // Height of each bar
         const padding = 10; // Padding for the SVG
@@ -53,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 .attr("class", "label");
 
             // Determine the color for the bar
-            const barColor = d.Value > maxDomainValue / 2 ? "#8ad6ce" : "#f36e57"; // Adjust the condition as needed
+            const barColor = d.Value === maxValue ? "#8ad6ce" : "#f36e57"; // Blue for the top value, red for others
 
             // Create bars with consistent widths and increased height
             svg.append("rect")
