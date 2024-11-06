@@ -82,10 +82,10 @@ data.forEach((d) => {
 
     // Display values on the right side of each bar
     svg.selectAll(".value")
-        .data([d.Value1, d.Value2])
+        .data([parseFloat(d.Value1.toFixed(1)), parseFloat(d.Value2.toFixed(1))])
         .enter()
         .append("text")
-        .attr("x", d => 30 + xScale(d) + 5)
+        .attr("x", d => 30 + xScale(d) + 11)
         .attr("y", (d, i) => i * 30 + 19) // Moved down by 2px
         .text(d => d)
         .attr("fill", "black")
