@@ -71,17 +71,17 @@ document.addEventListener('DOMContentLoaded', function () {
             // Update the precincts source data to the new file based on the selected proposition
             map.getSource('precincts').setData(dataUrl);
         
-            // Hide all legends first
-            const legends = document.querySelectorAll('.legend');
-            legends.forEach(legend => {
-                legend.style.display = 'none';
-            });
+            // // Hide all legends first
+            // const legends = document.querySelectorAll('.legend');
+            // legends.forEach(legend => {
+            //     legend.style.display = 'none';
+            // });
         
-            // Show the selected legend
-            const selectedLegend = document.getElementById(`legend-${selectedProp}`);
-            if (selectedLegend) {
-                selectedLegend.style.display = 'block'; // Show the selected legend
-            }
+            // // Show the selected legend
+            // const selectedLegend = document.getElementById(`legend-${selectedProp}`);
+            // if (selectedLegend) {
+            //     selectedLegend.style.display = 'block'; // Show the selected legend
+            // }
         });
         
 
