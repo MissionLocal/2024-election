@@ -74,7 +74,7 @@ data.forEach((d) => {
         svg.append("text")
             .attr("x", 55 + xScale(d.threshold))
             .attr("y", 19) // Moved down by 2px to align with the labels
-            .text("% required")
+            // .text("% required")
             .attr("fill", "black")
             .attr("font-size", "12px")
             .attr("class", "threshold-label");
