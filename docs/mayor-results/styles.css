@@ -26,7 +26,7 @@ body {
     background-color: #fff; /* White background for the proposition block */
     border-radius: 4px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    max-width: 375px; /* Max width of the box */
+    max-width: 275px; /* Max width of the box */
     width: 100%; /* Full width up to max-width */
 }
 
