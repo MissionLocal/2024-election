@@ -48,10 +48,10 @@ body {
     font-family: Barlow, sans-serif;
 
 }
-
+/* 
 #legend-A {
     display: flex;
-}
+} */
 .legend-container {
     display: flex;
     justify-content: center;

@@ -77,11 +77,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 legend.style.display = 'none';
             });
         
-            // Show the selected legend
-            const selectedLegend = document.getElementById(`legend-${selectedProp}`);
-            if (selectedLegend) {
-                selectedLegend.style.display = 'block'; // Show the selected legend
-            }
+            // // Show the selected legend
+            // const selectedLegend = document.getElementById(`legend-${selectedProp}`);
+            // if (selectedLegend) {
+            //     selectedLegend.style.display = 'block'; // Show the selected legend
+            // }
         });
         
 
