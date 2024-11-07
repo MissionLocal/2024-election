@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Set the threshold values based on Proposition
         data.forEach(d => {
-            d.Value1 = +d.Value1;
-            d.Value2 = +d.Value2;
+            d.yes_p = +d.yes_p;
+            d.no_p = +d.no_p;
             if (d.Proposition === "A") {
                 d.threshold = 55;
             } else if (d.Proposition === "B") {
@@ -37,7 +37,7 @@ data.forEach((d) => {
 
     // Add labels for "Yes" and "No"
     svg.selectAll(".label")
-        .data([d.Value1, d.Value2])
+        .data([d.yes_p, d.no_p])
         .enter()
         .append("text")
         .attr("x", 0)
@@ -50,7 +50,7 @@ data.forEach((d) => {
 
     // Create bars with consistent widths
     svg.selectAll(".bar")
-        .data([d.Value1, d.Value2])
+        .data([d.yes_p, d.no_p])
         .enter()
         .append("rect")
         .attr("x", 30) // Space for labels
@@ -82,7 +82,7 @@ data.forEach((d) => {
 
     // Display values on the right side of each bar
     svg.selectAll(".value")
-        .data([parseFloat(d.Value1.toFixed(1)), parseFloat(d.Value2.toFixed(1))])
+        .data([parseFloat(d.yes_p.toFixed(1)), parseFloat(d.no_p.toFixed(1))])
         .enter()
         .append("text")
         .attr("x", d => 30 + xScale(d) + 11)
