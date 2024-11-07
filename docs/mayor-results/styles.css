@@ -1,8 +1,8 @@
 /* Apply font to the whole page */
 body {
     font-family: 'Barlow', sans-serif;
-    margin: 10px;
-    margin-bottom: 30px;
+    margin: 0px;
+    margin-bottom: 1px;
     padding: 0;
     box-sizing: border-box;
 }
@@ -16,7 +16,7 @@ body {
 .container {
     display: flex; /* Use flexbox to center the box */
     justify-content: center; /* Center horizontally */
-    padding: 0; /* Remove side padding for better centering */
+    padding: 0 10px; /* Remove side padding for better centering */
     width: 100%; /* Ensure full width */
 }
 
