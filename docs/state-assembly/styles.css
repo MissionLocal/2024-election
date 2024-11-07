@@ -23,7 +23,6 @@ body {
     align-items: left !important; 
 }
 
-
 .instruction { 
     font-size: 16px;
     font-family: Barlow, sans-serif;
@@ -44,39 +43,20 @@ body {
 .legend-labels {
     display: flex;
     flex-wrap: wrap;
-    gap: 5px; /* Space between items */
-}
-
-#legend-district1 {
-    display: block; /* Display only legend-district1 by default */
-}
-
-.legend {
-    background-color: white;
-    border-radius: 4px;
-    padding: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: fit-content;
+    justify-content: space-between;
+    margin-top: 5px;
     font-family: Barlow, sans-serif;
-    display: none; /* Hide all legend elements by default */
+
 }
+
+#legend-district17 {
+    display: flex;
+} 
 
 .legend-container {
     display: flex;
-    justify-content: center !important;
-    gap: 20px; /* Space between the two legend boxes */
-    margin: 10px auto; /* Center with auto margins */
-    text-align: center;
-    padding-bottom: 10px;
-    width: 100%; /* Full width of the parent container */
-    max-width: 400px; /* Limit width for better readability */
-}
-
-
-.legend-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
+    justify-content: center;
+    margin: 10px; /* Space between the map and the legends */
 }
 
 .color-box {
@@ -88,6 +68,14 @@ body {
 }
 
 
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+
+
 /* Mobile Styles */
 @media (max-width: 768px) {
     .legend-container {
@@ -96,10 +84,20 @@ body {
     }
 }
 
-#details {
-    font-family: 'Barlow', sans-serif;
-    font-size: 14px;
+.color-scale { 
+    max-height: 50px;
 }
+
+.legend {
+    background-color: white;
+    border-radius: 4px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: fit-content;
+    font-family: Barlow, sans-serif;
+    display: none;
+}
+
 
 #propositionDropdown {
     font-size: 20px; /* Increase font size for better readability */
@@ -125,7 +123,7 @@ body {
 
 .popup-text {
     margin: 2px 0; /* Reduce margins on text elements */
-    font-size: 14px; /* Adjust text font size */
+    font-size: 16px; /* Adjust text font size */
     line-height: 1.2; /* Adjust line height */
     font-family: Barlow, sans-serif;
 
