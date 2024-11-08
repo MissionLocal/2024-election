@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 .addTo(map);
         }
     });
-  
+      
 
     map.on('load', function () {
         map.moveLayer('road-label-navigation');
