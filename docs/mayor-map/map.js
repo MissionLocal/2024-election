@@ -114,15 +114,17 @@ document.addEventListener('DOMContentLoaded', function () {
                     percentage: properties.ahsha_safaí__p || 0,
                     votes: properties.ahsha_safaí_ || 0
                 }
-               
             };
     
-            // Find the candidate with the highest percentage
-            const highestCandidate = Object.keys(candidates).reduce((a, b) =>
-                candidates[a].percentage > candidates[b].percentage ? a : b
+            // Find the maximum percentage among candidates
+            const maxPercentage = Math.max(...Object.values(candidates).map(c => c.percentage));
+    
+            // Get all candidates who have the maximum percentage
+            const topCandidates = Object.keys(candidates).filter(candidate => 
+                candidates[candidate].percentage === maxPercentage
             );
     
-            // Construct the popup content, highlighting the highest percentage
+            // Construct the popup content
             let content = `
                 <div style="background-color: white; padding: 5px; border-radius: 2.5px; font-size: 12px; line-height: 1.2;">
                     <h3 class="popup-header" style="margin: 2px 0; font-size: 16px;">Precinct ${properties.precinct || 'N/A'}</h3>
@@ -130,10 +132,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     <hr>
             `;
     
-            // Add each candidate's percentage and vote count in a <p> tag with popup-text class, highlighting the highest one
+            // Add each candidate's percentage and vote count in a <p> tag with popup-text class
             Object.keys(candidates).forEach(candidate => {
-                const isHighest = candidate === highestCandidate;
                 const { percentage, votes } = candidates[candidate];
+                const isHighest = topCandidates.includes(candidate);
                 content += `
                     <p class="popup-text" style="margin: 2px 0; ${isHighest ? 'font-weight: bold;' : ''}">
                         ${candidate}: ${percentage}% (${votes} votes)
@@ -141,17 +143,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 `;
             });
     
-            content += `</div>`;
+            content += '</div>';
     
-            // Remove any existing popup and add the new one
-            if (currentPopup) currentPopup.remove();
-    
-            currentPopup = new mapboxgl.Popup()
+            // Display the popup
+            new mapboxgl.Popup()
                 .setLngLat(e.lngLat)
                 .setHTML(content)
                 .addTo(map);
         }
-    });    
+    });
+  
 
     map.on('load', function () {
         map.moveLayer('road-label-navigation');
