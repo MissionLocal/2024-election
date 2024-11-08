@@ -50,8 +50,9 @@ body {
 }
 
 #legend-A {
-    display: flex;
+    display: none;
 }
+
 .legend-container {
     display: flex;
     justify-content: center;
