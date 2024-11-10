@@ -73,7 +73,7 @@ data.forEach((d) => {
     if (d.Proposition === "A") {
         svg.append("text")
             .attr("x", 55 + xScale(d.threshold))
-            .attr("y", 19) // Moved down by 2px to align with the labels
+            .attr("y", 20) // Moved down by 2px to align with the labels
             // .text("% required")
             .attr("fill", "black")
             .attr("font-size", "12px")
@@ -85,7 +85,7 @@ data.forEach((d) => {
         .data([parseFloat(d.yes_p.toFixed(1)), parseFloat(d.no_p.toFixed(1))])
         .enter()
         .append("text")
-        .attr("x", d => 30 + xScale(d) + 11)
+        .attr("x", d => 30 + xScale(d) + 16)
         .attr("y", (d, i) => i * 30 + 19) // Moved down by 2px
         .text(d => d)
         .attr("fill", "black")
