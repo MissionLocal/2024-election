@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     'oscar_flores', '#d896ff',
                     'adlah_chisti', '#efbe25',
                     'chyanne_chen', '#57a4ea',
-                    'ernest_ej_jones', '#e6e6e6', // Remaining color
+                    'ernest_ej_jones', '#ed43e5', // Remaining color
 
                     // Default color for unmatched names
                     '#CECECE'
