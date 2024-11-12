@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
         minZoom: 10.4
     });
 
+
     let currentPopup; // Variable to hold the current popup reference
     let currentDistrict = 'District 7'; // Set this based on user selection
 
