@@ -1,0 +1,27 @@
+// define stuff
+var mapFill = 'map_fill_001'
+var source = 'basemap'
+var selectedAreas = []
+var legendDetailsLocal = document.getElementById("legend-details-local")
+var legendDetailsTotal = document.getElementById("legend-details-total")
+var results = document.getElementById('results')
+var areaList = document.getElementById('area-list')
+var dropdown = document.getElementById('dataset-dropdown');
+var pymChild = new pym.Child();
+const fullnames = {
+    'propA': ['Proposition A', 'School bond', ''],
+    'propB': ['Proposition B', 'Health and medical facilities bond', ''],
+    'propC': ['Proposition C', 'Inspector General',''],
+    'propD': ['Proposition D', 'Commission reform',''],
+    'propE': ['Proposition E', 'Commission reform',''],
+    'propF': ['Proposition F', 'Police retirement deferral',''],
+    'propG': ['Proposition G', 'Rental subsidies',''],
+    'propH': ['Proposition H', 'Firefighter early retirement',''],
+    'propI': ['Proposition I', 'Retirement benefits',''],
+    'propJ': ['Proposition J', 'Oversight for funding youth programs',''],
+    'propK': ['Proposition K', 'Closing the Great Highway',''],
+    'propL': ['Proposition L', 'Ride-hailing vehicle tax',''],
+    'propM': ['Proposition M', 'Business tax reform',''],
+    'propN': ['Proposition N', 'First responder student loan fund',''],
+    'propO': ['Proposition O', 'Supporting reproductive freedom','']
+}

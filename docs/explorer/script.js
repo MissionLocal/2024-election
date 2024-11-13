@@ -27,20 +27,23 @@ var areaList = document.getElementById('area-list')
 var dropdown = document.getElementById('dataset-dropdown');
 var pymChild = new pym.Child();
 const fullnames = {
-    'propA': ['Proposition A', 'Affordable housing bond'],
-    'propB': ['Proposition B', 'Police officer staffing'],
-    'propC': ['Proposition C', 'Transfer tax exemption'],
-    'propD': ['Proposition D', 'Tightened ethics rules'],
-    'propE': ['Proposition E', 'Loosened police rules'],
-    'propF': ['Proposition F', 'Welfare drug screening'],
-    'propG': ['Proposition G', 'Algebra in 8th grade'],
-    'dccc17': ['DCCC Assembly District 17', ''],
-    'dccc19': ['DCCC Assembly District 19', ''],
-    'assembly17': ['Assembly District 17', ''],
-    'assembly19': ['Assembly District 19', ''],
-    'court1': ['Superior Court Seat 1', ''],
-    'court13': ['Superior Court Seat 13', ''],
-    'turnout': ['Turnout', '']}
+    'propA': ['Proposition A', 'School bond'],
+    'propB': ['Proposition B', 'Health and medical facilities bond'],
+    'propC': ['Proposition C', 'Inspector General'],
+    'propD': ['Proposition D', 'Commission reform'],
+    'propE': ['Proposition E', 'Commission reform'],
+    'propF': ['Proposition F', 'Police retirement deferral'],
+    'propG': ['Proposition G', 'Rental subsidies'],
+    'propH': ['Proposition H', 'Firefighter early retirement'],
+    'propI': ['Proposition I', 'Retirement benefits'],
+    'propJ': ['Proposition J', 'Oversight for funding youth programs'],
+    'propK': ['Proposition K', 'Closing the Great Highway'],
+    'propL': ['Proposition L', 'Ride-hailing vehicle tax'],
+    'propM': ['Proposition M', 'Business tax reform'],
+    'propN': ['Proposition N', 'First responder student loan fund'],
+    'propO': ['Proposition O', 'Supporting reproductive freedom'],
+    'turnout': ['Turnout', '']
+}
 
 ///
 /// PRIMARY FUNCTIONS
