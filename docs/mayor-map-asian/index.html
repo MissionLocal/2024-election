@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <title>Mayoral results</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css' rel='stylesheet' />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="cont">
+        <div id='map'></div>
+    </div>
+
+    <!-- Legend Container -->
+    <div class="legend-container">
+        <!-- District 7 Legend -->
+        <div class="legend">
+            <div class="legend-labels">
+                <div class="legend-item">
+                    <div class="color-box" style="background-color: #efbe25;"></div>
+                    <span>precincts where Lurie came first</span>
+                </div>
+                                <div class="legend-item">
+                    <div class="color-box" style="background-color: #cccccc; border: black 1px solid;"></div>
+                    <span>census tracts with Asian population<br> above the city's average</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script type='text/javascript' src="map.js"></script>
+    <script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"></script>
+
+</body>
+
+</html>
