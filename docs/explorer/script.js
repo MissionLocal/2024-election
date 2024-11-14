@@ -27,14 +27,14 @@ var areaList = document.getElementById('area-list')
 var dropdown = document.getElementById('dataset-dropdown');
 var pymChild = new pym.Child();
 const fullnames = {
+    'mayor': ['Mayor', 'First choice votes'],
+    'district1': ['District 1 Supervisor', 'First choice votes'],
+    'district3': ['District 3 Supervisor', 'First choice votes'],
+    'district5': ['District 5 Supervisor', 'First choice votes'],
+    'district7': ['District 7 Supervisor', 'First choice votes'],
+    'district9': ['District 9 Supervisor', 'First choice votes'],
+    'district11': ['District 11 Supervisor', 'First chocie votes'],
     'president': ['President', ''],
-    'mayor': ['Mayor', ''],
-    'district1': ['District 1 Supervisor', ''],
-    'district3': ['District 3 Supervisor', ''],
-    'district5': ['District 5 Supervisor', ''],
-    'district7': ['District 7 Supervisor', ''],
-    'district9': ['District 9 Supervisor', ''],
-    'district11': ['District 11 Supervisor', ''],
     'propA': ['Proposition A', 'School bond'],
     'propB': ['Proposition B', 'Health and medical facilities bond'],
     'propC': ['Proposition C', 'Inspector General'],
@@ -130,6 +130,7 @@ function changeMapSelection(areas, bool) {
 
 function generate(datasets, fullnames, selectedAreas) {
     results.innerHTML = ""; // clear the results
+    propositions.innerHTML = ""; // clear the propositions
 
     if (selectedAreas.length == 0) {
         areaList.innerHTML = "<span class='area'>No area selected</span>";
@@ -169,9 +170,18 @@ function generate(datasets, fullnames, selectedAreas) {
         const cityRates = columns.map((_, j) => (columnCitySums[j] / totalCitySum) * 100);
 
         if (localColumnSums[0] > 0) {
-            let HTML = "<h4 class='chart-heading' id='heading-" + key + "' style='cursor: pointer;'>" + fullnames[key][0] + "</h4>" +
+            let headerTag = "h4";  // Default header tag
+            let HTML = "";
+        
+            // Check if the key is a "Proposition" and use h6 for Propositions
+            if (fullnames[key] && fullnames[key][0].includes("Proposition")) {
+                headerTag = "h6";  // Change to h6 for Propositions
+            }
+        
+            HTML = "<" + headerTag + " class='chart-heading' id='heading-" + key + "' style='cursor: pointer;'>" + (fullnames[key] ? fullnames[key][0] : "Unknown") + "</" + headerTag + ">" +
                 '<div class="chart" id="chart-' + key + '" style="display: none;">' +  // Hide the chart initially
-                '<p><em>' + fullnames[key][1] + '</em></p>';
+                '<p><em>' + (fullnames[key] ? fullnames[key][1] : "No description available") + '</em></p>';
+        
             for (let i = 0; i < columns.length; i++) {
                 HTML +=
                     '<div class="glass">' +
@@ -181,51 +191,82 @@ function generate(datasets, fullnames, selectedAreas) {
                     `<div class="mark-text" id="mark-text-${removeSpaces(key + columns[i])}"></div>` +
                     '</div>';
             };
-            HTML += '</div><hr>';
-            results.innerHTML += HTML;
-
-            console.log("Generated chart for " + key);
-
+            HTML += '</div>';
+        
+            // Check if the "propositions" or "results" div exists
+            let targetDiv = document.getElementById('results');  // Default target
+            if (fullnames[key] && fullnames[key][0].includes("Proposition")) {
+                targetDiv = document.getElementById('propositions');  // Use the "propositions" div if "Proposition" is found
+            }
+        
+            // Ensure the target div exists before appending content
+            if (targetDiv) {
+                targetDiv.innerHTML += HTML;
+            } else {
+                console.error('Target div not found');
+            }
+        
+            // Update the progress bars
             for (let i = 0; i < columns.length; i++) {
-                document.getElementById("progress-local-" + removeSpaces(key + columns[i])).style.width = String(localRates[i]) + "%";
-                document.getElementById("mark-text-" + removeSpaces(key + columns[i])).style.left = String(localRates[i]) + "%";
-                document.getElementById("mark-text-" + removeSpaces(key + columns[i])).innerHTML = "<span class='bar-highlight local-highlight'>" + String(round(localRates[i]), 0) + "%</span>";
-
-                document.getElementById("progress-citywide-" + removeSpaces(key + columns[i])).style.width = String(cityRates[i]) + "%";
-                document.getElementById("label-" + removeSpaces(key + columns[i])).innerHTML = "<strong>" + toTitleCase(columns[i]) + "</strong>" + " (<span class='overall-highlight'>" + String(round(cityRates[i]), 0) + "%</span>)";
-
-                if (fullnames[key][1] == '') {
-                    document.getElementById("chart-" + key).style.height = String((80 * columns.length) - 10) + "px";
+                let localRateElement = document.getElementById("progress-local-" + removeSpaces(key + columns[i]));
+                let markTextElement = document.getElementById("mark-text-" + removeSpaces(key + columns[i]));
+                let cityRateElement = document.getElementById("progress-citywide-" + removeSpaces(key + columns[i]));
+                let labelElement = document.getElementById("label-" + removeSpaces(key + columns[i]));
+        
+                if (localRateElement && markTextElement && cityRateElement && labelElement) {
+                    localRateElement.style.width = String(localRates[i]) + "%";
+                    markTextElement.style.left = String(localRates[i]) + "%";
+                    markTextElement.innerHTML = "<span class='bar-highlight local-highlight'>" + String(round(localRates[i]), 0) + "%</span>";
+        
+                    cityRateElement.style.width = String(cityRates[i]) + "%";
+                    labelElement.innerHTML = "<strong>" + toTitleCase(columns[i]) + "</strong>" + " (<span class='overall-highlight'>" + String(round(cityRates[i]), 0) + "%</span>)";
+        
+                    if (fullnames[key][1] == '') {
+                        document.getElementById("chart-" + key).style.height = String((80 * columns.length) - 10) + "px";
+                    } else {
+                        document.getElementById("chart-" + key).style.height = String((80 * columns.length) + 20) + "px";
+                    }
                 } else {
-                    document.getElementById("chart-" + key).style.height = String((80 * columns.length) + 20) + "px";
+                    console.error("Some elements are missing in the DOM for chart: " + key);
                 }
             }
-        }
+        }     
     }
 
     // Add event listeners for expanding/collapsing charts
     addExpandCollapseListeners();
 }
 
-// Function to add click event listeners for expanding/collapsing the chart div
 function addExpandCollapseListeners() {
-    // Get all chart headings (h4 elements)
+    // Get all chart headings (h4 or h6 elements)
     const headings = document.querySelectorAll('.chart-heading');
     
     // Add click event listener to each heading
     headings.forEach(heading => {
+        // Initialize the indicator if not already present
+        if (!heading.querySelector('.expand-collapse-indicator')) {
+            const indicator = document.createElement('span');
+            indicator.classList.add('expand-collapse-indicator');
+            indicator.textContent = '+'; // Default indicator is '+'
+            heading.appendChild(indicator); // Add indicator next to heading
+        }
+        
         heading.addEventListener('click', function () {
             const chartDiv = document.getElementById('chart-' + heading.id.replace('heading-', ''));
+            const indicator = heading.querySelector('.expand-collapse-indicator');
             
             // Check the current display style of the chart div
-            if (chartDiv.style.display === 'none') {
+            if (chartDiv.style.display === 'none' || chartDiv.style.display === '') {
                 chartDiv.style.display = 'block'; // Show the chart
+                indicator.textContent = '-'; // Change the indicator to '-'
             } else {
                 chartDiv.style.display = 'none'; // Hide the chart
+                indicator.textContent = '+'; // Change the indicator to '+'
             }
         });
     });
 }
+
 
 // function to clear everything
 function clear() {

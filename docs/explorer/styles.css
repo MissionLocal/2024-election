@@ -23,6 +23,12 @@ body, html {
     margin-bottom: 10px;
 } */
 
+.expand-collapse-indicator {
+    margin-left: 10px; /* Adds space between the heading and the indicator */
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer; /* Makes the indicator look clickable */
+}
 
 
 #map {
