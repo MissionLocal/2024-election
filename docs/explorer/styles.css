@@ -3,6 +3,7 @@ body, html {
     display: flex;
     justify-content: center; /* Center horizontally */
     overflow-y: auto; /* Allow scrolling if content exceeds viewport height */
+    overflow-x: hidden;
     font-family: Barlow, sans-serif;
 }
 
@@ -22,6 +23,8 @@ body, html {
     margin-bottom: 10px;
 } */
 
+
+
 #map {
     width: 100vw;
     max-width: 580px;
@@ -35,8 +38,8 @@ body, html {
 
 #text-container {
     position: relative;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 /* charts */
@@ -122,17 +125,18 @@ hr.solid {
 .area {
     background-color: #c7c7c761;
     border-radius: 2px;
-    border: 2px solid #404040;
+    border: 1px solid #404040;
     padding: 5px;
     font-size: 16px;
     margin: 2px;
     display: inline-block;
+    box-shadow: #808080 1px 1px 1px;
 }
 
 #clear-button {
     background-color: #ff9fd261;
     border-radius: 2px;
-    border: 2px solid #000000;
+    border: 1px solid #000000;
     padding: 5px;
     font-size: 16px;
     margin: 2px;
@@ -150,8 +154,8 @@ hr.solid {
 
 .map-overlay {
     position: absolute;
-    top: 95px;
-    left: 20px;
+    top: 87px;
+    left: 25px;
     background: #fff;
     margin-right: 20px;
     font-family: Barlow, sans-serif;
@@ -171,10 +175,19 @@ hr.solid {
 }
 
 #dataset-dropdown {
-    border-radius: 4px;
-    margin: 10px;
-    padding: 2px;
-    margin-left: 0px;
+    font-size: 16px; /* Increase font size for better readability */
+    border-radius: 5px; /* Rounded corners */
+    border: 0px solid gray; /* Border for visibility */
+    margin: 0 auto; /* Center the dropdown itself */
+    font-family: Barlow, sans-serif;
+    width: 100vw;
+    max-width: 300px;
+    background-color: white; /* Match legend background */
+    padding: 5px; /* Add padding similar to legend */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+    appearance: none; /* Remove default styling in some browsers */
+    position: relative;
+    padding-right: 30px; /* Space for arrow */
 }
 
 .contest-title {
@@ -182,3 +195,8 @@ hr.solid {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+#results {
+    margin-top: 25px;
+}
+
