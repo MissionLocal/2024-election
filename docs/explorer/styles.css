@@ -1,12 +1,14 @@
-body {
+body, html {
     margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    overflow-y: auto; /* Allow scrolling if content exceeds viewport height */
+    font-family: Barlow, sans-serif;
 }
 
 #main-container {
     padding: 10px 0px 10px 0px;
+    max-width: 600px; 
 }
 
 .container {
@@ -14,11 +16,21 @@ body {
     max-width: none;
 }
 
-#map {
-    position: relative;
+/* #map {
     height: 550px;
     margin-top: 10px;
     margin-bottom: 10px;
+} */
+
+#map {
+    width: 100vw;
+    max-width: 580px;
+    height: 500px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+    position: relative;
+
 }
 
 #text-container {
@@ -138,11 +150,11 @@ hr.solid {
 
 .map-overlay {
     position: absolute;
-    top: 5px;
+    top: 95px;
     left: 20px;
     background: #fff;
     margin-right: 20px;
-    font-family: Calibri;
+    font-family: Barlow, sans-serif;
     overflow: auto;
     border-radius: 3px;
 }

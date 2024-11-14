@@ -1,17 +1,17 @@
 // define mapbox access token
-mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY2t0d2FsdWRpMmkxbDMxcnJ4eTNsMmFlMiJ9.dUju5BD_HqseLNWGIGvXpg";
+mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY2t0dnZwcm1mMmR5YzMycDNrcDZtemRybyJ9.Br-G0LTOB3M6w83Az4XGtQ";
 
 // define basemap
 if (window.innerWidth < 400) {
-    var mapZoom = 10.4;
+    var mapZoom = 11;
     var mapY = 37.765;
 } else {
-    var mapZoom = 10.7;
+    var mapZoom = 11;
     var mapY = 37.758;
 }
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mlnow/cl9yzhray000314qmqyxagj82',
+    style: 'mapbox://styles/mlnow/cm38404cu007c01r883k16tl6',
     zoom: mapZoom,
     center: [-122.438, mapY],
 });
@@ -125,7 +125,7 @@ function generate(datasets, fullnames, selectedAreas) {
     if (selectedAreas.length == 0) {
         // clear the list of areas at the bottom of the map
         areaList.innerHTML = "<span class='area'>No area selected</span>";
-        results.innerHTML = "Select a precinct or use the dropdown to see results.";
+        results.innerHTML = "";
         legendDetailsLocal.innerHTML = "0";
         dropdown.value = 'custom';
         return;
@@ -223,7 +223,7 @@ function clear() {
 
     // clear the list of areas at the bottom of the map
     areaList.innerHTML = "<span class='area'>No area selected</span>"
-    results.innerHTML = "Select a precinct or use the dropdown to see results."
+    results.innerHTML = ""
     legendDetailsLocal.innerHTML = "0"
 
     // select custom in dropdown
@@ -249,9 +249,10 @@ function mapFillFunction(mapID, visibility, source) {
         paint: {
         "fill-color": [
             'case',
-            ['boolean', ['feature-state', 'selected'], false],
-            '#f220de',
-            '#c6c6c5'],
+            ['boolean', ['feature-state', 'selected'], false],  // color when selected
+            '#f220de',  // color when selected
+            'transparent'  // no color when not selected (no default color)
+        ],
         "fill-opacity": [
             'case',
             ['boolean', ['feature-state', 'hover'], false],
