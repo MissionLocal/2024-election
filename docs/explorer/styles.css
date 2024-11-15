@@ -254,3 +254,20 @@ hr.solid {
 #results {
     margin-top: 25px;
 }
+
+
+/* MOBILE STUFF */
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .main-container {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .map-overlay {
+        position: absolute;
+        top: 95px;
+        left: 25px;
+    }
+    
+}
