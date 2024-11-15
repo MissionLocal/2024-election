@@ -50,6 +50,11 @@ body, html {
 
 /* charts */
 
+.chart {
+    margin-bottom: 20px; /* Adjust the value as needed */
+}
+
+
 hr.solid {
     border-top: 2px solid #bbbbbb1c;
     margin-top: 20px;
@@ -59,11 +64,17 @@ hr.solid {
 .glass {
     width: 100%;
     padding-top: 25px;
+    padding-bottom: 25px !important;
     height: 75px;
     background: #c5c5c500;
-    float: left;
-    overflow: hidden;
+    display: block; /* Ensures the div takes up the full width */
     position: relative;
+    overflow: hidden;
+}
+
+.h4 {
+
+    padding-top: 50px !important;
 }
 
 .chunk {
@@ -71,14 +82,30 @@ hr.solid {
     height: 500px;
 }
 
+
 .mark-text {
-    font-size: small;
-    position: relative;
-    text-align: left;
-    margin-left: 5px;
-    color: #000000c7;
-    margin-top: 10px;
+    position: absolute;
+    top: 50%;  /* Vertically center the text */
+    transform: translateY(37%);  /* Fine-tune vertical centering */
+    z-index: 1;
+    white-space: nowrap;
+    padding-left: 5px;
 }
+
+.city-text {
+    position: absolute;
+    top: 50%;  /* Vertically center the text */
+    transform: translateY(37%);  /* Fine-tune vertical centering */
+    z-index: 1;
+    white-space: nowrap;
+    padding-left: 5px;
+}
+
+
+
+
+
+
 
 .bar-label {
     font-size: 14px;
@@ -98,7 +125,29 @@ hr.solid {
 
 }
 
+.progress-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-bottom: 25px;
+    position: relative;
+}
+
+.progress-citywide, .progress-local {
+    height: 20px; /* Adjust the height of the progress bars */
+    border-radius: 5px;
+}
+
 .progress-citywide {
+    background-color: #80808057; /* Adjust as needed */
+}
+
+.progress-local {
+    background-color: #f220de; /* Adjust as needed */
+}
+
+
+/* .progress-citywide {
     float: left;
     height: 40px;
     background: #c7c7c7b0;
@@ -111,7 +160,7 @@ hr.solid {
     background: #f220de;
     position: absolute;
     margin-top: 10px;
-}
+} */
 
 .local-highlight {
     background: linear-gradient(#f220de61, #f220de61),

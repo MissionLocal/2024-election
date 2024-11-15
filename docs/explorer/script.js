@@ -28,12 +28,12 @@ var dropdown = document.getElementById('dataset-dropdown');
 var pymChild = new pym.Child();
 const fullnames = {
     'mayor': ['Mayor', 'First choice votes'],
-    'district1': ['District 1 Supervisor', 'First choice votes'],
-    'district3': ['District 3 Supervisor', 'First choice votes'],
-    'district5': ['District 5 Supervisor', 'First choice votes'],
-    'district7': ['District 7 Supervisor', 'First choice votes'],
-    'district9': ['District 9 Supervisor', 'First choice votes'],
-    'district11': ['District 11 Supervisor', 'First chocie votes'],
+    'district1': ['District 1 supervisor', 'First choice votes'],
+    'district3': ['District 3 supervisor', 'First choice votes'],
+    'district5': ['District 5 supervisor', 'First choice votes'],
+    'district7': ['District 7 supervisor', 'First choice votes'],
+    'district9': ['District 9 supervisor', 'First choice votes'],
+    'district11': ['District 11 supervisor', 'First chocie votes'],
     'president': ['President', ''],
     'propA': ['Proposition A', 'School bond'],
     'propB': ['Proposition B', 'Health and medical facilities bond'],
@@ -172,55 +172,71 @@ function generate(datasets, fullnames, selectedAreas) {
         if (localColumnSums[0] > 0) {
             let headerTag = "h4";  // Default header tag
             let HTML = "";
-        
+
             // Check if the key is a "Proposition" and use h6 for Propositions
             if (fullnames[key] && fullnames[key][0].includes("Proposition")) {
                 headerTag = "h6";  // Change to h6 for Propositions
             }
-        
+
             HTML = "<" + headerTag + " class='chart-heading' id='heading-" + key + "' style='cursor: pointer;'>" + (fullnames[key] ? fullnames[key][0] : "Unknown") + "</" + headerTag + ">" +
                 '<div class="chart" id="chart-' + key + '" style="display: none;">' +  // Hide the chart initially
                 '<p><em>' + (fullnames[key] ? fullnames[key][1] : "No description available") + '</em></p>';
-        
+
             for (let i = 0; i < columns.length; i++) {
                 HTML +=
                     '<div class="glass">' +
                     `<p class="bar-label" id="label-${removeSpaces(key + columns[i])}"></p>` +
+                    `<div class="progress-container">` +
                     `<div class="progress-citywide" id="progress-citywide-${removeSpaces(key + columns[i])}"></div>` +
                     `<div class="progress-local" id="progress-local-${removeSpaces(key + columns[i])}"></div>` +
+                    // Add the percentage span here
+                    `<span class="progress-percentage" id="percentage-${removeSpaces(key + columns[i])}"></span>` +
+                    `</div>` +
                     `<div class="mark-text" id="mark-text-${removeSpaces(key + columns[i])}"></div>` +
                     '</div>';
-            };
-            HTML += '</div>';
-        
+            }
+            HTML += '</div><hr>';
+
             // Check if the "propositions" or "results" div exists
             let targetDiv = document.getElementById('results');  // Default target
             if (fullnames[key] && fullnames[key][0].includes("Proposition")) {
                 targetDiv = document.getElementById('propositions');  // Use the "propositions" div if "Proposition" is found
             }
-        
+
             // Ensure the target div exists before appending content
             if (targetDiv) {
                 targetDiv.innerHTML += HTML;
             } else {
                 console.error('Target div not found');
             }
-        
-            // Update the progress bars
+
+            // Update the progress bars and percentages
+
+            // Inside the loop where you update the progress bars and percentages:
             for (let i = 0; i < columns.length; i++) {
                 let localRateElement = document.getElementById("progress-local-" + removeSpaces(key + columns[i]));
                 let markTextElement = document.getElementById("mark-text-" + removeSpaces(key + columns[i]));
                 let cityRateElement = document.getElementById("progress-citywide-" + removeSpaces(key + columns[i]));
                 let labelElement = document.getElementById("label-" + removeSpaces(key + columns[i]));
-        
-                if (localRateElement && markTextElement && cityRateElement && labelElement) {
+                let percentageElement = document.getElementById("percentage-" + removeSpaces(key + columns[i]));  // Get percentage element
+
+                if (localRateElement && markTextElement && cityRateElement && labelElement && percentageElement) {
+                    // Set widths for progress bars
                     localRateElement.style.width = String(localRates[i]) + "%";
-                    markTextElement.style.left = String(localRates[i]) + "%";
+                    // Position the mark-text at the end of the progress-local bar
+                    markTextElement.style.left = `calc(${localRates[i]}% + 2px)`;  // Adjust +10px to fine-tune the positioning
                     markTextElement.innerHTML = "<span class='bar-highlight local-highlight'>" + String(round(localRates[i]), 0) + "%</span>";
-        
+
                     cityRateElement.style.width = String(cityRates[i]) + "%";
-                    labelElement.innerHTML = "<strong>" + toTitleCase(columns[i]) + "</strong>" + " (<span class='overall-highlight'>" + String(round(cityRates[i]), 0) + "%</span>)";
-        
+                    // labelElement.innerHTML = "<strong>" + toTitleCase(columns[i]) + "</strong>" + " (<span class='overall-highlight'>" + String(round(cityRates[i]), 0) + "%</span>)";
+                    labelElement.innerHTML = "<strong>" + toTitleCase(columns[i]) + "</strong>";
+
+
+                    // Calculate the percentage for each bar
+                    let percentage = cityRates[i];  // This could be a different variable depending on your logic
+                    percentageElement.textContent = `${percentage}%`;  // Set percentage text
+
+                    // Adjust chart height if necessary
                     if (fullnames[key][1] == '') {
                         document.getElementById("chart-" + key).style.height = String((80 * columns.length) - 10) + "px";
                     } else {
@@ -230,7 +246,9 @@ function generate(datasets, fullnames, selectedAreas) {
                     console.error("Some elements are missing in the DOM for chart: " + key);
                 }
             }
-        }     
+
+        }
+
     }
 
     // Add event listeners for expanding/collapsing charts
@@ -240,7 +258,7 @@ function generate(datasets, fullnames, selectedAreas) {
 function addExpandCollapseListeners() {
     // Get all chart headings (h4 or h6 elements)
     const headings = document.querySelectorAll('.chart-heading');
-    
+
     // Add click event listener to each heading
     headings.forEach(heading => {
         // Initialize the indicator if not already present
@@ -250,11 +268,11 @@ function addExpandCollapseListeners() {
             indicator.textContent = '+'; // Default indicator is '+'
             heading.appendChild(indicator); // Add indicator next to heading
         }
-        
+
         heading.addEventListener('click', function () {
             const chartDiv = document.getElementById('chart-' + heading.id.replace('heading-', ''));
             const indicator = heading.querySelector('.expand-collapse-indicator');
-            
+
             // Check the current display style of the chart div
             if (chartDiv.style.display === 'none' || chartDiv.style.display === '') {
                 chartDiv.style.display = 'block'; // Show the chart
@@ -279,6 +297,7 @@ function clear() {
     // clear the list of areas at the bottom of the map
     areaList.innerHTML = "<span class='area'>No area selected</span>"
     results.innerHTML = ""
+    propositions.innerHTML = ""
     legendDetailsLocal.innerHTML = "0"
 
     // select custom in dropdown
