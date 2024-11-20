@@ -1,0 +1,7 @@
+donor,recipient,amount,donorPhoto,pass
+Daniel Lurie,Daniel Lurie,"$8,655,000",./photos/lurie.jpg,true
+Michael Moritz,Mark Farrell,"$600,000",./photos/moritz.jpeg,false
+Michael Bloomberg,London Breed,"$1,500,000",./photos/bloomberg.jpg,false
+William Oberndorf,Mark Farrell,"$1,200,000",./photos/oberndorf.png,false
+Chris Larsen,London Breed,"$1,000,000",./photos/larsen.png,false
+Mimi Haas,Daniel Lurie,"$1,000,000",./photos/haas.png,true
