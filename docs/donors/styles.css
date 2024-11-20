@@ -1,6 +1,7 @@
 .body {
     justify-content: center;
     /* margin-bottom: 10px; */
+    min-height: 716px;
 }
 /* Center the container and set max width */
 .table-container {
