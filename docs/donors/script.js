@@ -1,16 +1,16 @@
 $(document).ready(function () {
     // Initialize Pym.js first
     var pymChild = new pym.Child();
-    
+
     // Load the CSV file
     Papa.parse('candidates.csv', {
         download: true,
         header: true,
         complete: function (results) {
             // Populate the table with the data
-            results.data.forEach(function(row) {
+            results.data.forEach(function (row) {
                 // Determine the background color for the second column based on the "pass" column
-                const recipientBgColor = row.pass === "true" 
+                const recipientBgColor = row.pass === "true"
                     ? 'rgba(13, 214, 199, 0.4)' // Blue for true
                     : 'rgba(233, 159, 106, 0.4)'; // Red for false
 
@@ -27,8 +27,6 @@ $(document).ready(function () {
 
             });
 
-            pymChild.sendHeight();
-
             // Initialize DataTables
             $('#electionResults').DataTable({
                 "paging": false,
@@ -36,6 +34,10 @@ $(document).ready(function () {
                 "info": false,
                 "ordering": false
             });
+
+            pymChild.sendHeight();
+
+
 
             // Resize Pym.js on window resize
             $(window).on('resize', function () {
