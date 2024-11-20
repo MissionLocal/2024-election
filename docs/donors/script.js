@@ -27,8 +27,9 @@ $(document).ready(function () {
                     </tr>`
                 );
 
-                pymChild.sendHeight();
             });
+
+            pymChild.sendHeight();
 
             // Initialize DataTables
             $('#electionResults').DataTable({
