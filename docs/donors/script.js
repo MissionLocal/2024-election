@@ -1,6 +1,8 @@
 $(document).ready(function () {
     // Initialize Pym.js first
     var pymChild = new pym.Child();
+    
+    pymChild.sendHeight();
 
     // Load the CSV file
     Papa.parse('candidates.csv', {
