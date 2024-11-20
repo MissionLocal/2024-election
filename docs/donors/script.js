@@ -1,20 +1,18 @@
 $(document).ready(function () {
     // Initialize Pym.js first
     var pymChild = new pym.Child();
-
+    
     // Load the CSV file
     Papa.parse('candidates.csv', {
         download: true,
         header: true,
         complete: function (results) {
             // Populate the table with the data
-            results.data.forEach(function (row) {
-                // Determine the background color for the second column based on the "pass" column
-                const recipientBgColor = row.pass === "true"
-                    ? 'rgba(13, 214, 199, 0.4)' // Blue for true
-                    : 'rgba(233, 159, 106, 0.4)'; // Red for false
+            results.data.forEach(function(row) {
+                const recipientBgColor = row.pass === "true" 
+                    ? 'rgba(13, 214, 199, 0.4)' 
+                    : 'rgba(233, 159, 106, 0.4)';
 
-                // Add a row with donor photo, recipient, and amount
                 $('#electionResults tbody').append(
                     `<tr>
                         <td style="text-align: center;">
@@ -24,7 +22,11 @@ $(document).ready(function () {
                         <td style="text-align: center; background-color: ${recipientBgColor};">${row.recipient}</td>
                     </tr>`
                 );
+            });
 
+            // Wait for all images to load before sending height
+            $('#electionResults img').on('load', function () {
+                pymChild.sendHeight();
             });
 
             // Initialize DataTables
@@ -35,9 +37,8 @@ $(document).ready(function () {
                 "ordering": false
             });
 
+            // Send height after initialization
             pymChild.sendHeight();
-
-
 
             // Resize Pym.js on window resize
             $(window).on('resize', function () {
