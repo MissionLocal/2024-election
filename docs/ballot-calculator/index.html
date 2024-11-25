@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fill your November 2024 ballot</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link href="styles.css" rel="stylesheet">
+    <script src="bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <div id="main-container">
+        <div id="inner-container">
+            <h1 class="title">How much money went into your November ballot?</h1>
+
+            <div id="step-1">
+                <h3 class="step"><strong>Which supervisor district are you in?</strong></h3>
+                <select class="dropdown" id="ballot-dropdown">
+                    <option value="empty">Select a district...</option>
+                    <option value="D1">District 1</option>
+                    <option value="D2">District 2</option>
+                    <option value="D3">District 3</option>
+                    <option value="D4">District 4</option>
+                    <option value="D5">District 5</option>
+                    <option value="D6">District 6</option>
+                    <option value="D7">District 7</option>
+                    <option value="D8">District 8</option>
+                    <option value="D9">District 9</option>
+                    <option value="D10">District 10</option>
+                    <option value="D11">District 11</option>
+                </select>
+            </div>
+
+            <!-- vote costs -->
+            <div class="main-container" id="calculatorBox">
+                <div class="row">
+                    <div class="col-md-auto">
+                        <p id="totalCostVote-display">Total: <strong>$0</strong></p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- step 2 mayor and propositions-->
+
+            <div id="step-2">
+                <hr />
+                <h3 class="step"><strong>Mayor (No. 1 choice)</strong></h3>
+                <div class="container">
+                    <div class="row">
+                        <div class="radio-pair"> 
+                            <div class="col-md-auto px-0">
+                                <input type="radio" class="mayor" name="mayor" id="mayorLondonBreed" value="LondonBreed">
+                                <label for="mayorLondonBreed">
+                                    <div class="checkmark"></div> London Breed (incumbent)
+                                </label>
+                            </div>
+                            <div class="col-md-auto px-0">
+                                <input type="radio" class="mayor" name="mayor" id="mayorMarkFarrell" value="MarkFarrell">
+                                <label for="mayorMarkFarrell">
+                                    <div class="checkmark"></div> Mark Farrell
+                                </label>
+                            </div>
+                            <div class="col-md-auto px-0">
+                                <input type="radio" class="mayor" name="mayor" id="mayorHenryFlynn" value="HenryFlynn">
+                                <label for="mayorHenryFlynn">
+                                    <div class="checkmark"></div> Henry Flynn
+                                </label>
+                            </div>
+                            <div class="col-md-auto px-0">
+                                <input type="radio" class="mayor" name="mayor" id="mayorDylanHirschShell" value="DylanHirschShell">
+                                <label for="mayorDylanHirschShell">
+                                    <div class="checkmark"></div> Dylan Hirsch-Shell
+                                </label>
+                            </div>
+                            <div class="col-md-auto px-0">
+                                <input type="radio" class="mayor" name="mayor" id="mayorDanielLurie" value="DanielLurie">
+                                <label for="mayorDanielLurie">
+                                    <div class="checkmark"></div> Daniel Lurie
+                                </label>
+                            </div>
+                            <div class="col-md-auto px-0">
+                                <input type="radio" class="mayor" name="mayor" id="mayorNelsonMei" value="NelsonMei">
+                                <label for="mayorNelsonMei">
+                                    <div class="checkmark"></div> Nelson Mei
+                                </label>
+                            </div>
+                            <div class="col-md-auto px-0">
+                                <input type="radio" class="mayor" name="mayor" id="mayorAaronPeskin" value="AaronPeskin">
+                                <label for="mayorAaronPeskin">
+                                    <div class="checkmark"></div> Aaron Peskin
+                                </label>
+                            </div>
+                            <div class="col-md-auto px-0">
+                                <input type="radio" class="mayor" name="mayor" id="mayorAhshaSafaí" value="AhshaSafaí">
+                                <label for="mayorAhshaSafaí">
+                                    <div class="checkmark"></div> Ahsha Safaí
+                                </label>
+                            </div>
+                            <div class="col-md-auto px-0">
+                                <input type="radio" class="mayor" name="mayor" id="mayorShahramShariati" value="ShahramShariati">
+                                <label for="mayorShahramShariati">
+                                    <div class="checkmark"></div> Shahram Shariati
+                                </label>
+                            </div>
+                            <div class="col-md-auto px-0">
+                                <input type="radio" class="mayor" name="mayor" id="mayorEllenLeeZhou" value="EllenLeeZhou">
+                                <label for="mayorEllenLeeZhou">
+                                    <div class="checkmark"></div> Ellen Lee Zhou
+                                </label>
+                            </div>
+                            <div class="col-md-auto px-0">
+                                <input type="radio" class="mayor" name="mayor" id="mayorKeithFreedman" value="KeithFreedman">
+                                <label for="mayorKeithFreedman">
+                                    <div class="checkmark"></div> Keith Freedman
+                                </label>
+                            </div>
+                            <div class="col-md-auto px-0">
+                                <input type="radio" class="mayor" name="mayor" id="mayorPaulYbarraRobertson" value="PaulYbarraRobertson">
+                                <label for="mayorPaulYbarraRobertson">
+                                    <div class="checkmark"></div> Paul Ybarra Robertson
+                                </label>
+                            </div>
+                            <div class="col-md-auto px-0">
+                                <input type="radio" class="mayor" name="mayor" id="mayorJonSoderstrom" value="JonSoderstrom">
+                                <label for="mayorJonSoderstrom">
+                                    <div class="checkmark"></div> Jon Soderstrom
+                                </label>
+                            </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- step 3 District 1 Supervisor -->
+            <div id="step-3">   
+                <hr />  
+                <h3 class="step"><strong>District 1 Supervisor (No. 1 choice)</strong></h3>
+                <div class="container" id="step-3">
+                    <div>
+                        <input type="radio" class="D1" name="D1" id="D1JeremiahBoehner" value="JeremiahBoehner"/>
+                        <label for="D1JeremiahBoehner">Jeremiah Boehner</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="D1" name="D1" id="D1ConnieChan" value="ConnieChan"/>
+                        <label for="D1ConnieChan">Connie Chan (incumbent)</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="D1" name="D1" id="D1ShermanDSilva" value="ShermanDSilva"/>
+                        <label for="D1ShermanDSilva">Sherman D'Silva</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="D1" name="D1" id="D1JenNossokoff" value="JenNossokoff"/>
+                        <label for="D1JenNossokoff">Jen Nossokoff</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="D1" name="D1" id="D1MarjanPhilhour" value="MarjanPhilhour"/>
+                        <label for="D1MarjanPhilhour">Marjan Philhour</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- step 4 District 3 Supervisor -->
+            <div id="step-4">    
+                <hr /> 
+                <h3 class="step"><strong>District 3 Supervisor (No. 1 choice)</strong></h3>
+                <div class="container" id="step-4">
+                    <div>
+                        <input type="radio" class="D3" name="D3" id="D3WendyHaChau" value="WendyHaChau"/>
+                        <label for="D3WendyHaChau">Wendy Ha Chau</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="D3" name="D3" id="D3MoeJamil" value="MoeJamil"/>
+                        <label for="D3MoeJamil">Moe Jamil</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="D3" name="D3" id="D3SharonLai" value="SharonLai"/>
+                        <label for="D3SharonLai">Sharon Lai</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="D3" name="D3" id="D3EduardNavarro" value="EduardNavarro"/>
+                        <label for="D3EduardNavarro">Eduard Navarro</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="D3" name="D3" id="D3DannySauter" value="DannySauter"/>
+                        <label for="D3DannySauter">Danny Sauter</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="D3" name="D3" id="D3MatthewSusk" value="MatthewSusk"/>
+                        <label for="D3MatthewSusk">Matthew Susk</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- step 5 District 5 Supervisor -->
+            <div id="step-5">  
+                <hr />   
+                <h3 class="step"><strong>District 5 Supervisor (No. 1 choice)</strong></h3>
+                <div class="container" id="step-5">
+                    <div>
+                        <input type="radio" class="D5" name="D5" id="D5ScottyJacobs" value="ScottyJacobs"/>
+                        <label for="D5ScottyJacobs">Scotty Jacobs</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="D5" name="D5" id="D5AllenJones" value="AllenJones"/>
+                        <label for="D5AllenJones">Allen Jones</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="D5" name="D5" id="D5AutumnHopeLooijen" value="AutumnHopeLooijen"/>
+                        <label for="D5AutumnHopeLooijen">Autumn Hope Looijen</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="D5" name="D5" id="D5BilalMahmood" value="BilalMahmood"/>
+                        <label for="D5BilalMahmood">Bilal Mahmood</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="D5" name="D5" id="D5DeanPreston" value="DeanPreston"/>
+                        <label for="D5DeanPreston">Dean Preston (incumbent)</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- step 6 District 7 Supervisor -->
+            <div id="step-6">    
+                <hr /> 
+                <h3 class="step"><strong>District 7 Supervisor (No. 1 choice)</strong></h3>
+                <div class="container" id="step-6">
+                    <div>
+                        <input type="radio" class="D7" name="D7" id="D7MattBoschetto" value="MattBoschetto"/>
+                        <label for="D7MattBoschetto">Matt Boschetto</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="D7" name="D7" id="D7StephenMartinPinto" value="StephenMartinPinto"/>
+                        <label for="D7StephenMartinPinto">Stephen Martin-Pinto</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="D7" name="D7" id="D7MyrnaMelgar" value="MyrnaMelgar"/>
+                        <label for="D7MyrnaMelgar">Myrna Melgar (incumbent)</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="D7" name="D7" id="D7EdwardSYee" value="EdwardSYee"/>
+                        <label for="D5EdwardSYee">Edward S. Yee</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- step 7 District 9 Supervisor -->
+            <div id="step-7">    
+                <hr /> 
+                <h3 class="step"><strong>District 9 Supervisor (No. 1 choice)</strong></h3>
+                <div class="container" id="step-7">
+                    <div>
+                        <input type="radio" class="D9" name="D9" id="D9JulianEBermudez" value="JulianEBermudez"/>
+                        <label for="D9JulianEBermudez">Julian E. Bermudez</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="D9" name="D9" id="D7HBrown" value="HBrown"/>
+                        <label for="D9HBrown">H. Brown</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="D9" name="D9" id="D9TrevorChandler" value="TrevorChandler"/>
+                        <label for="D9TrevorChandler">Trevor Chandler</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="D9" name="D9" id="D9JackieFielder" value="JackieFielder"/>
+                        <label for="D9JackieFielder">Jackie Fielder</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="D9" name="D9" id="D9JaimeGutierrez" value="JaimeGutierrez"/>
+                        <label for="D9JaimeGutierrez">Jaime Gutierrez</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="D9" name="D9" id="D9RobertoHernandez" value="RobertoHernandez"/>
+                        <label for="D9RobertoHernandez">Roberto Hernandez</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="D9" name="D9" id="D9StephenJonTorres" value="StephenJonTorres"/>
+                        <label for="D9StephenJonTorres">Stephen Jon Torres</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- step 8 District 11 Supervisor -->
+            <div id="step-8">    
+                <hr /> 
+                <h3 class="step"><strong>District 11 Supervisor (No. 1 choice)</strong></h3>
+                <div class="container" id="step-8">
+                    <div>
+                        <input type="radio" class="D11" name="D11" id="D11ChyanneChen" value="ChyanneChen"/>
+                        <label for="D11ChyanneChen">Chyanne Chen</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="D11" name="D11" id="D11AdlahChisti" value="AdlahChisti"/>
+                        <label for="D11AdlahChisti">Adlah Chisti</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="D11" name="D11" id="D11OscarFlores" value="OscarFlores"/>
+                        <label for="D11OscarFlores">Oscar Flores</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="D11" name="D11" id="D11ErnestEJJones" value="ErnestEJJones"/>
+                        <label for="D11ErnestEJJones">Ernest "EJ" Jones</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="D11" name="D11" id="D11MichaelLai" value="MichaelLai"/>
+                        <label for="D11MichaelLai">Michael Lai</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="D11" name="D11" id="D11RogerKMarenco" value="RogerKMarenco"/>
+                        <label for="D11RogerKMarenco">Roger K. Marenco</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="D11" name="D11" id="D11JoseMorales" value="JoseMorales"/>
+                        <label for="D11JoseMorales">Jose Morales</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- step 9 City and county propositions -->
+            <div id="step-9">
+                <hr /> 
+                <h3 class="step"><strong>City and County Propositions</strong></h3>
+                <div class="container">
+                    <div class="row">
+                        <div class="col"><span class="bold-text">Proposition A</span>: Schools Improvement and Safety Bond</div>
+                        <div class="col-md-auto"></div>
+                        <div class="radio-pair">
+                            <div class="col col-lg-2">
+                                <input type="radio" class="prop" name="propA" id="propAYes" value="propAYes">
+                                <label for="propAYes">
+                                    <div class="checkmark"></div> Yes
+                                </label>
+                            </div>
+                            <div class="col col-lg-2">
+                                <input type="radio" class="prop" name="propA" id="propANo" value="propANo">
+                                <label for="propANo">
+                                    <div class="checkmark"></div> No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col"><span class="bold-text">Proposition B</span>: Community Health and Medical Facilities, Street Safety, Public Spaces, and Shelter to Reduce Homelessness Bond</div>
+                        <div class="col-md-auto"></div>
+                        <div class="radio-pair">
+                            <div class="col col-lg-2">
+                                <input type="radio" class="prop" name="propB" id="propBYes" value="propBYes">
+                                <label for="propBYes">
+                                    <div class="checkmark"></div> Yes
+                                </label>
+                            </div>
+                            <div class="col col-lg-2">
+                                <input type="radio" class="prop" name="propB" id="propBNo" value="propBNo">
+                                <label for="propBNo">
+                                    <div class="checkmark"></div> No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col"><span class="bold-text">Proposition C</span>: Inspector General</div>
+                        <div class="col-md-auto"></div>
+                        <div class="radio-pair">
+                            <div class="col col-lg-2">
+                                <input type="radio" class="prop" name="propC" id="propCYes" value="propCYes">
+                                <label for="propCYes">
+                                    <div class="checkmark"></div> Yes
+                                </label>
+                            </div>
+                            <div class="col col-lg-2">
+                                <input type="radio" class="prop" name="propC" id="propCNo" value="propCNo">
+                                <label for="propCNo">
+                                    <div class="checkmark"></div> No
+                                </label>
+                            </div>
+                        </div>
+                    </div>   
+                    
+                    <div class="row">
+                        <div class="col"><span class="bold-text">Proposition D</span>: City Commissions and Mayoral Authority</div>
+                        <div class="col-md-auto"></div>
+                        <div class="radio-pair">
+                            <div class="col col-lg-2">
+                                <input type="radio" class="prop" name="propD" id="propDYes" value="propDYes">
+                                <label for="propDYes">
+                                    <div class="checkmark"></div> Yes
+                                </label>
+                            </div>
+                            <div class="col col-lg-2">
+                                <input type="radio" class="prop" name="propD" id="propDNo" value="propDNo">
+                                <label for="propDNo">
+                                    <div class="checkmark"></div> No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col"><span class="bold-text">Proposition E</span>: Creating a Task Force to Recommend Changing, Eliminating, or Combining City Commissions</div>
+                        <div class="col-md-auto"></div>
+                        <div class="radio-pair">
+                            <div class="col col-lg-2">
+                                <input type="radio" class="prop" name="propE" id="propEYes" value="propEYes">
+                                <label for="propEYes">
+                                    <div class="checkmark"></div> Yes
+                                </label>
+                            </div>
+                            <div class="col col-lg-2">
+                                <input type="radio" class="prop" name="propE" id="propENo" value="propENo">
+                                <label for="propENo">
+                                    <div class="checkmark"></div> No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col"><span class="bold-text">Proposition F</span>: Police Staffing and Deferred Retirement</div>
+                        <div class="col-md-auto"></div>
+                        <div class="radio-pair">
+                            <div class="col col-lg-2">
+                                <input type="radio" class="prop" name="propF" id="propFYes" value="propFYes">
+                                <label for="propFYes">
+                                    <div class="checkmark"></div> Yes
+                                </label>
+                            </div>
+                            <div class="col col-lg-2">
+                                <input type="radio" class="prop" name="propF" id="propFNo" value="propFNo">
+                                <label for="propFNo">
+                                    <div class="checkmark"></div> No
+                                </label>
+                            </div>
+                        </div>
+                    </div>   
+
+                    <div class="row">
+                        <div class="col"><span class="bold-text">Proposition G</span>: Funding Rental Subsidies for Affordable Housing Developments Serving Low Income Seniors,  Families, and Persons with Disabilities</div>
+                        <div class="col-md-auto"></div>
+                        <div class="radio-pair">
+                            <div class="col col-lg-2">
+                                <input type="radio" class="prop" name="propG" id="propGYes" value="propGYes">
+                                <label for="propGYes">
+                                    <div class="checkmark"></div> Yes
+                                </label>
+                            </div>
+                            <div class="col col-lg-2">
+                                <input type="radio" class="prop" name="propG" id="propGNo" value="propGNo">
+                                <label for="propGNo">
+                                    <div class="checkmark"></div> No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col"><span class="bold-text">Proposition H</span>: Retirement Benefits for Firefighters</div>
+                        <div class="col-md-auto"></div>
+                        <div class="radio-pair">
+                            <div class="col col-lg-2">
+                                <input type="radio" class="prop" name="propH" id="propHYes" value="propHYes">
+                                <label for="propHYes">
+                                    <div class="checkmark"></div> Yes
+                                </label>
+                            </div>
+                            <div class="col col-lg-2">
+                                <input type="radio" class="prop" name="propH" id="propHNo" value="propHNo">
+                                <label for="propHNo">
+                                    <div class="checkmark"></div> No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col"><span class="bold-text">Proposition I</span>: Retirement Benefits for Nurses and 911 Operators</div>
+                        <div class="col-md-auto"></div>
+                        <div class="radio-pair">
+                            <div class="col col-lg-2">
+                                <input type="radio" class="prop" name="propI" id="propIYes" value="propIYes">
+                                <label for="propIYes">
+                                    <div class="checkmark"></div> Yes
+                                </label>
+                            </div>
+                            <div class="col col-lg-2">
+                                <input type="radio" class="prop" name="propI" id="propINo" value="propINo">
+                                <label for="propINo">
+                                    <div class="checkmark"></div> No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col"><span class="bold-text">Proposition J</span>: Funding Programs Serving Children, Youth, and Families</div>
+                        <div class="col-md-auto"></div>
+                        <div class="radio-pair">
+                            <div class="col col-lg-2">
+                                <input type="radio" class="prop" name="propJ" id="propJYes" value="propJYes">
+                                <label for="propJYes">
+                                    <div class="checkmark"></div> Yes
+                                </label>
+                            </div>
+                            <div class="col col-lg-2">
+                                <input type="radio" class="prop" name="propJ" id="propJNo" value="propJNo">
+                                <label for="propJNo">
+                                    <div class="checkmark"></div> No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col"><span class="bold-text">Proposition K</span>: Permanently Closing the Upper Great Highway  to Private Vehicles to Establish a Public Open  Recreation Space</div>
+                        <div class="col-md-auto"></div>
+                        <div class="radio-pair">
+                            <div class="col col-lg-2">
+                                <input type="radio" class="prop" name="propK" id="propKYes" value="propKYes">
+                                <label for="propKYes">
+                                    <div class="checkmark"></div> Yes
+                                </label>
+                            </div>
+                            <div class="col col-lg-2">
+                                <input type="radio" class="prop" name="propK" id="propKNo" value="propKNo">
+                                <label for="propKNo">
+                                    <div class="checkmark"></div> No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col"><span class="bold-text">Proposition L</span>: Additional Business Tax on Transportation Network Companies and Autonomous Vehicle Businesses to  Fund Public Transportation</div>
+                        <div class="col-md-auto"></div>
+                        <div class="radio-pair">
+                            <div class="col col-lg-2">
+                                <input type="radio" class="prop" name="propL" id="propLYes" value="propLYes">
+                                <label for="propLYes">
+                                    <div class="checkmark"></div> Yes
+                                </label>
+                            </div>
+                            <div class="col col-lg-2">
+                                <input type="radio" class="prop" name="propL" id="propLNo" value="propLNo">
+                                <label for="propLNo">
+                                    <div class="checkmark"></div> No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col"><span class="bold-text">Proposition M</span>: Changes to Business Taxes</div>
+                        <div class="col-md-auto"></div>
+                        <div class="radio-pair">
+                            <div class="col col-lg-2">
+                                <input type="radio" class="prop" name="propM" id="propMYes" value="propMYes">
+                                <label for="propMYes">
+                                    <div class="checkmark"></div> Yes
+                                </label>
+                            </div>
+                            <div class="col col-lg-2">
+                                <input type="radio" class="prop" name="propM" id="propMNo" value="propMNo">
+                                <label for="propMNo">
+                                    <div class="checkmark"></div> No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col"><span class="bold-text">Proposition N</span>: First Responder Student Loan and Training  Reimbursement Fund</div>
+                        <div class="col-md-auto"></div>
+                        <div class="radio-pair">
+                            <div class="col col-lg-2">
+                                <input type="radio" class="prop" name="propN" id="propNYes" value="propNYes">
+                                <label for="propNYes">
+                                    <div class="checkmark"></div> Yes
+                                </label>
+                            </div>
+                            <div class="col col-lg-2">
+                                <input type="radio" class="prop" name="propN" id="propNNo" value="propNNo">
+                                <label for="propNNo">
+                                    <div class="checkmark"></div> No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col"><span class="bold-text">Proposition O</span>: Supporting Reproductive Rights</div>
+                        <div class="col-md-auto"></div>
+                        <div class="radio-pair">
+                            <div class="col col-lg-2">
+                                <input type="radio" class="prop" name="propO" id="propOYes" value="propOYes">
+                                <label for="propOYes">
+                                    <div class="checkmark"></div> Yes
+                                </label>
+                            </div>
+                            <div class="col col-lg-2">
+                                <input type="radio" class="prop" name="propO" id="propONo" value="propONo">
+                                <label for="propONo">
+                                    <div class="checkmark"></div> No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> 
+            </div> 
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+/* mobile versions */
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: 30px;
+  }
+  .step {
+      font-size: 24px;
+  }
+  .form-control {
+    margin-left: 0px;
+  }
+  .dropdown {
+    font-size: 20px;
+  }
+  #main-container {
+    padding: 10px;
+  }
+  #inner-container {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  #inner-container {
+    margin: 0 auto;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: none;
+  font-family: 'Barlow', sans-serif;
+  font-size: 16px;
+}
+
+#inner-container {
+  position: relative;
+  min-width: 200px;
+  max-width: 630px;
+  width: 95%;
+  background-color: rgba(245, 245, 245, 0);
+  padding: 15px;
+  border: 1px solid rgb(153, 153, 153);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.18);
+  border-radius: 2px;
+  height: 100%;
+}
+
+#main-container {
+  padding: 10px;
+  height: 100%;
+}
+
+.col {
+  padding-left: 0px;
+}
+
+.title {
+  text-align: left;
+  font-size: 40px;
+  font-weight: 800;
+}
+
+input[type="radio"]:checked {
+  background: #000;
+}
+
+label {
+  cursor: pointer;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+.step {
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 20px;
+}
+
+.dropdown {
+	padding: 10px 5px 10px 5px;
+	margin: 10px 0px 10px 0px;
+	font-size: 16px;
+	border-color: #e5e5e5;
+	border-radius: 5px;
+  border: 0px solid gray;
+	background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+}
+
+.italicSpan {
+  font-style: italic;
+  font-size: 18px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+#calculatorBox {
+  background-color: #ade8f4; 
+  z-index: 1;
+  border: 1.8px solid black;
+  padding: 10px;
+  width: 130px;
+  height: 45px;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+
