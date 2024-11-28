@@ -1,17 +1,17 @@
 // define mapbox access token
-mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY2t0d2FsdWRpMmkxbDMxcnJ4eTNsMmFlMiJ9.dUju5BD_HqseLNWGIGvXpg";
+mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY2t0dnZwcm1mMmR5YzMycDNrcDZtemRybyJ9.Br-G0LTOB3M6w83Az4XGtQ";
 
 // define basemap
 if (window.innerWidth < 400) {
-    var mapZoom = 10.4;
+    var mapZoom = 11;
     var mapY = 37.765;
 } else {
-    var mapZoom = 10.7;
+    var mapZoom = 11;
     var mapY = 37.758;
 }
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mlnow/cl9yzhray000314qmqyxagj82',
+    style: 'mapbox://styles/mlnow/cm38404cu007c01r883k16tl6',
     zoom: mapZoom,
     center: [-122.438, mapY],
 });
@@ -27,20 +27,31 @@ var areaList = document.getElementById('area-list')
 var dropdown = document.getElementById('dataset-dropdown');
 var pymChild = new pym.Child();
 const fullnames = {
-    'propA': ['Proposition A', 'Affordable housing bond'],
-    'propB': ['Proposition B', 'Police officer staffing'],
-    'propC': ['Proposition C', 'Transfer tax exemption'],
-    'propD': ['Proposition D', 'Tightened ethics rules'],
-    'propE': ['Proposition E', 'Loosened police rules'],
-    'propF': ['Proposition F', 'Welfare drug screening'],
-    'propG': ['Proposition G', 'Algebra in 8th grade'],
-    'dccc17': ['DCCC Assembly District 17', ''],
-    'dccc19': ['DCCC Assembly District 19', ''],
-    'assembly17': ['Assembly District 17', ''],
-    'assembly19': ['Assembly District 19', ''],
-    'court1': ['Superior Court Seat 1', ''],
-    'court13': ['Superior Court Seat 13', ''],
-    'turnout': ['Turnout', '']}
+    'mayor': ['Mayor', 'First choice votes'],
+    'district1': ['District 1 supervisor', 'First choice votes'],
+    'district3': ['District 3 supervisor', 'First choice votes'],
+    'district5': ['District 5 supervisor', 'First choice votes'],
+    'district7': ['District 7 supervisor', 'First choice votes'],
+    'district9': ['District 9 supervisor', 'First choice votes'],
+    'district11': ['District 11 supervisor', 'First chocie votes'],
+    'president': ['President', ''],
+    'propA': ['Proposition A', 'School bond'],
+    'propB': ['Proposition B', 'Health and medical facilities bond'],
+    'propC': ['Proposition C', 'Inspector General'],
+    'propD': ['Proposition D', 'Commission reform'],
+    'propE': ['Proposition E', 'Commission reform'],
+    'propF': ['Proposition F', 'Police retirement deferral'],
+    'propG': ['Proposition G', 'Rental subsidies'],
+    'propH': ['Proposition H', 'Firefighter early retirement'],
+    'propI': ['Proposition I', 'Retirement benefits'],
+    'propJ': ['Proposition J', 'Oversight for funding youth programs'],
+    'propK': ['Proposition K', 'Closing the Great Highway'],
+    'propL': ['Proposition L', 'Ride-hailing vehicle tax'],
+    'propM': ['Proposition M', 'Business tax reform'],
+    'propN': ['Proposition N', 'First responder student loan fund'],
+    'propO': ['Proposition O', 'Supporting reproductive freedom'],
+    'turnout': ['Turnout', '']
+}
 
 ///
 /// PRIMARY FUNCTIONS
@@ -62,7 +73,7 @@ async function main() {
     });
 
     // when something on the dropdown is clicked, trigger interaction code
-    dropdown.addEventListener('change', function() {
+    dropdown.addEventListener('change', function () {
         onDropdownSelect(datasets, fullnames, lookup, this.value);
     });
 }
@@ -116,99 +127,164 @@ function changeMapSelection(areas, bool) {
     });
 }
 
+
 function generate(datasets, fullnames, selectedAreas) {
-    results.innerHTML = "" // clear the results
+    results.innerHTML = ""; // clear the results
+    propositions.innerHTML = ""; // clear the propositions
 
     if (selectedAreas.length == 0) {
-        // clear the list of areas at the bottom of the map
         areaList.innerHTML = "<span class='area'>No area selected</span>";
-        results.innerHTML = "Select a precinct or use the dropdown to see results.";
+        results.innerHTML = "";
         legendDetailsLocal.innerHTML = "0";
         dropdown.value = 'custom';
         return;
     }
 
-    // change list based on selected areas
-    let areaListHTML = ""
-    //for (let i = 0; i < selectedAreas.length; i++) {
-    //    areaListHTML += "<span class='area'>" + selectedAreas[i] + "</span>"
-    //}
-    areaList.innerHTML = areaListHTML + "<button id='clear-button'>Clear selection</button>"
+    let areaListHTML = "";
+    areaList.innerHTML = areaListHTML + "<button id='clear-button'>Clear selection</button>";
 
-    // calculate and display local voters
     local_voters = selectedAreas.reduce((acc, area) => acc + datasets['turnout']['votes_cast'][area], 0);
     legendDetailsLocal.innerHTML = numberWithCommas(local_voters);
-        
-    // create clear button
-    var clearButton = document.getElementById("clear-button")
+
+    var clearButton = document.getElementById("clear-button");
     clearButton.addEventListener("click", clear);
 
-    // iterate through each dataset
     let keys = Object.keys(datasets);
     for (let i = 0; i < keys.length - 1; i++) {
         let key = keys[i];
         let dataset = datasets[key];
         let columns = Object.keys(dataset);
-    
-        // sum each column - citywide
-        let columnCitySums = columns.map(column => Object.values(dataset[column]).reduce((acc, value) => acc + value, 0));
 
-        // sum each column - local
+        let columnCitySums = columns.map(column => Object.values(dataset[column]).reduce((acc, value) => acc + value, 0));
         let localColumnSums = columns.map(column =>
             selectedAreas.reduce((localAcc, area) => localAcc + dataset[column][area], 0)
         );
 
-        // create local rates by dividing each column by the local sum
         const totalLocalSum = localColumnSums[localColumnSums.length - 1];
-        localColumnSums = localColumnSums.slice(0, -1); // trim the last value, which is the total
-        columns = columns.slice(0, -1); // trim the last value, which is the total
+        localColumnSums = localColumnSums.slice(0, -1);
+        columns = columns.slice(0, -1);
         const localRates = columns.map((_, j) => (localColumnSums[j] / totalLocalSum) * 100);
-        
-        // create citywide rates by dividing each column by the citywide sum
+
         const totalCitySum = columnCitySums[columnCitySums.length - 1];
-        columnCitySums = columnCitySums.slice(0, -1); // trim the last value, which is the total
+        columnCitySums = columnCitySums.slice(0, -1);
         const cityRates = columns.map((_, j) => (columnCitySums[j] / totalCitySum) * 100);
 
-        // create chart
         if (localColumnSums[0] > 0) {
-            var HTML = "<h4>" + fullnames[key][0] + "</h4>" + '<div class="chart" id="chart-' + key + '">' + '<p><em>' + fullnames[key][1] + '</em></p>';
+            let headerTag = "h4";  // Default header tag
+            let HTML = "";
+
+            // Check if the key is a "Proposition" and use h6 for Propositions
+            if (fullnames[key] && fullnames[key][0].includes("Proposition")) {
+                headerTag = "h6";  // Change to h6 for Propositions
+            }
+
+            HTML = "<" + headerTag + " class='chart-heading' id='heading-" + key + "' style='cursor: pointer;'>" + (fullnames[key] ? fullnames[key][0] : "Unknown") + "</" + headerTag + ">" +
+                '<div class="chart" id="chart-' + key + '" style="display: none;">' +  // Hide the chart initially
+                '<p><em>' + (fullnames[key] ? fullnames[key][1] : "No description available") + '</em></p>';
+
             for (let i = 0; i < columns.length; i++) {
                 HTML +=
-                '<div class="glass">' +
-                    `<p class="bar-label" id="label-${removeSpaces(key+columns[i])}"></p>` +
-                    `<div class="progress-citywide" id="progress-citywide-${removeSpaces(key+columns[i])}"></div>` +
-                    `<div class="progress-local" id="progress-local-${removeSpaces(key+columns[i])}"></div>` +
-                    `<div class="mark-text" id="mark-text-${removeSpaces(key+columns[i])}"></div>` +
-                '</div>';
-            };
+                    '<div class="glass">' +
+                    `<p class="bar-label" id="label-${removeSpaces(key + columns[i])}"></p>` +
+                    `<div class="progress-container">` +
+                    `<div class="progress-citywide" id="progress-citywide-${removeSpaces(key + columns[i])}"></div>` +
+                    `<div class="progress-local" id="progress-local-${removeSpaces(key + columns[i])}"></div>` +
+                    // Add the percentage span here
+                    `<span class="progress-percentage" id="percentage-${removeSpaces(key + columns[i])}"></span>` +
+                    `</div>` +
+                    `<div class="mark-text" id="mark-text-${removeSpaces(key + columns[i])}"></div>` +
+                    '</div>';
+            }
             HTML += '</div><hr>';
-            results.innerHTML += HTML;
 
-            // match values to chart
+            // Check if the "propositions" or "results" div exists
+            let targetDiv = document.getElementById('results');  // Default target
+            if (fullnames[key] && fullnames[key][0].includes("Proposition")) {
+                targetDiv = document.getElementById('propositions');  // Use the "propositions" div if "Proposition" is found
+            }
+
+            // Ensure the target div exists before appending content
+            if (targetDiv) {
+                targetDiv.innerHTML += HTML;
+            } else {
+                console.error('Target div not found');
+            }
+
+            // Update the progress bars and percentages
+
+            // Inside the loop where you update the progress bars and percentages:
             for (let i = 0; i < columns.length; i++) {
-                document.getElementById("progress-local-" + removeSpaces(key+columns[i])).style.width = String(localRates[i]) + "%";
-                document.getElementById("mark-text-" + removeSpaces(key+columns[i])).style.left = String(localRates[i]) + "%";
-                document.getElementById("mark-text-" + removeSpaces(key+columns[i])).innerHTML = "<span class='bar-highlight local-highlight'>" + String(round(localRates[i]),0) + "%</span>";
-        
-                document.getElementById("progress-citywide-" + removeSpaces(key+columns[i])).style.width = String(cityRates[i]) + "%";
-                document.getElementById("label-" + removeSpaces(key+columns[i])).innerHTML = "<strong>" + toTitleCase(columns[i]) + "</strong>" + " (<span class='overall-highlight'>" + String(round(cityRates[i]),0) + "%</span>)";
+                let localRateElement = document.getElementById("progress-local-" + removeSpaces(key + columns[i]));
+                let markTextElement = document.getElementById("mark-text-" + removeSpaces(key + columns[i]));
+                let cityRateElement = document.getElementById("progress-citywide-" + removeSpaces(key + columns[i]));
+                let labelElement = document.getElementById("label-" + removeSpaces(key + columns[i]));
+                let percentageElement = document.getElementById("percentage-" + removeSpaces(key + columns[i]));  // Get percentage element
 
-                // set height of chart, depending on if there is a fullnames[key][1]
-                if (fullnames[key][1] == '') {
-                    document.getElementById("chart-" + key).style.height = String((80 * columns.length) - 10) + "px";
+                if (localRateElement && markTextElement && cityRateElement && labelElement && percentageElement) {
+                    // Set widths for progress bars
+                    localRateElement.style.width = String(localRates[i]) + "%";
+                    // Position the mark-text at the end of the progress-local bar
+                    markTextElement.style.left = `calc(${localRates[i]}% + 2px)`;  // Adjust +10px to fine-tune the positioning
+                    markTextElement.innerHTML = "<span class='bar-highlight local-highlight'>" + String(round(localRates[i]), 0) + "%</span>";
+
+                    cityRateElement.style.width = String(cityRates[i]) + "%";
+                    // labelElement.innerHTML = "<strong>" + toTitleCase(columns[i]) + "</strong>" + " (<span class='overall-highlight'>" + String(round(cityRates[i]), 0) + "%</span>)";
+                    labelElement.innerHTML = "<strong>" + toTitleCase(columns[i]) + "</strong>";
+
+
+                    // Calculate the percentage for each bar
+                    let percentage = cityRates[i];  // This could be a different variable depending on your logic
+                    percentageElement.textContent = `${percentage}%`;  // Set percentage text
+
+                    // Adjust chart height if necessary
+                    if (fullnames[key][1] == '') {
+                        document.getElementById("chart-" + key).style.height = String((80 * columns.length) - 10) + "px";
+                    } else {
+                        document.getElementById("chart-" + key).style.height = String((80 * columns.length) + 20) + "px";
+                    }
                 } else {
-                    document.getElementById("chart-" + key).style.height = String((80 * columns.length) + 20) + "px";
+                    console.error("Some elements are missing in the DOM for chart: " + key);
                 }
             }
+
         }
+
     }
 
-    // change pym height
-    delay(250).then(() => pymChild.sendHeight());
-
-    // get turnout sum in selected areas
-    legendDetailsLocal.innerHTML = numberWithCommas(local_voters);
+    // Add event listeners for expanding/collapsing charts
+    addExpandCollapseListeners();
 }
+
+function addExpandCollapseListeners() {
+    // Get all chart headings (h4 or h6 elements)
+    const headings = document.querySelectorAll('.chart-heading');
+
+    // Add click event listener to each heading
+    headings.forEach(heading => {
+        // Initialize the indicator if not already present
+        if (!heading.querySelector('.expand-collapse-indicator')) {
+            const indicator = document.createElement('span');
+            indicator.classList.add('expand-collapse-indicator');
+            indicator.textContent = '+'; // Default indicator is '+'
+            heading.appendChild(indicator); // Add indicator next to heading
+        }
+
+        heading.addEventListener('click', function () {
+            const chartDiv = document.getElementById('chart-' + heading.id.replace('heading-', ''));
+            const indicator = heading.querySelector('.expand-collapse-indicator');
+
+            // Check the current display style of the chart div
+            if (chartDiv.style.display === 'none' || chartDiv.style.display === '') {
+                chartDiv.style.display = 'block'; // Show the chart
+                indicator.textContent = '-'; // Change the indicator to '-'
+            } else {
+                chartDiv.style.display = 'none'; // Hide the chart
+                indicator.textContent = '+'; // Change the indicator to '+'
+            }
+        });
+    });
+}
+
 
 // function to clear everything
 function clear() {
@@ -220,12 +296,13 @@ function clear() {
 
     // clear the list of areas at the bottom of the map
     areaList.innerHTML = "<span class='area'>No area selected</span>"
-    results.innerHTML = "Select a precinct or use the dropdown to see results."
+    results.innerHTML = ""
+    propositions.innerHTML = ""
     legendDetailsLocal.innerHTML = "0"
 
     // select custom in dropdown
     dropdown.value = 'custom';
-    
+
     // change pym height
     delay(250).then(() => pymChild.sendHeight());
 };
@@ -241,40 +318,41 @@ function mapFillFunction(mapID, visibility, source) {
         type: "fill",
         source: source,
         layout: {
-        'visibility': visibility
+            'visibility': visibility
         },
         paint: {
-        "fill-color": [
-            'case',
-            ['boolean', ['feature-state', 'selected'], false],
-            '#f220de',
-            '#c6c6c5'],
-        "fill-opacity": [
-            'case',
-            ['boolean', ['feature-state', 'hover'], false],
-            0.85,
-            0.65
+            "fill-color": [
+                'case',
+                ['boolean', ['feature-state', 'selected'], false],  // color when selected
+                '#f220de',  // color when selected
+                'transparent'  // no color when not selected (no default color)
+            ],
+            "fill-opacity": [
+                'case',
+                ['boolean', ['feature-state', 'hover'], false],
+                0.85,
+                0.65
             ],
         },
     }
-return mapFillDetails;
+    return mapFillDetails;
 }
 
 // function to define map outline information
 function mapOutlineFunction(mapID, visibility, source) {
     mapOutlineDetails = {
-    id: mapID,
-    type: "line",
-    source: source,
-    layout: {
-    "visibility": visibility
-    },
-    paint: {
-        "line-color": "black",
-        "line-width": ['case',['boolean',['feature-state','hover'],false],2,0]
-    },
-}
-return mapOutlineDetails;
+        id: mapID,
+        type: "line",
+        source: source,
+        layout: {
+            "visibility": visibility
+        },
+        paint: {
+            "line-color": "#f220de",
+            "line-width": ['case', ['boolean', ['feature-state', 'hover'], false], 2, 0]
+        },
+    }
+    return mapOutlineDetails;
 }
 
 ///
@@ -313,9 +391,9 @@ function removeItem(arr, value) {
     var i = 0;
     while (i < arr.length) {
         if (arr[i] === value) {
-        arr.splice(i, 1);
+            arr.splice(i, 1);
         } else {
-        ++i;
+            ++i;
         }
     }
     return arr;
@@ -346,21 +424,21 @@ map.on("load", function () {
     for (var i = 0; i < mapLayers.length; i++) {
         map.addSource(mapLayers[i], {
             'type': 'geojson',
-            'data': 'data/'+mapLayers[i]+'.geojson?nocache='  + (new Date()).getTime(),
+            'data': 'data/' + mapLayers[i] + '.geojson?nocache=' + (new Date()).getTime(),
             'promoteId': 'precinct'
         });
     }
     mapFillFunction("map_fill_001", "visible", "basemap");
-    map.addLayer(mapFillDetails,"water-point-label");
+    map.addLayer(mapFillDetails, "water-point-label");
     mapOutlineFunction("map_outline_001", "visible", "basemap");
-    map.addLayer(mapOutlineDetails,"water-point-label");
+    map.addLayer(mapOutlineDetails, "water-point-label");
 });
 
 // function to fetch data
 async function fetchData(files) {
     let datasets = {};
     for (let i = 0; i < files.length; i++) {
-        var response = await fetch('data/'+files[i]+'.json?nocache='  + (new Date()).getTime());
+        var response = await fetch('data/' + files[i] + '.json?nocache=' + (new Date()).getTime());
         var data = await response.json();
         datasets[files[i]] = data;
     }
@@ -369,7 +447,7 @@ async function fetchData(files) {
 
 // function to fetch csv
 async function fetchCSV(file) {
-    var response = await fetch('data/'+file+'.csv?nocache='  + (new Date()).getTime());
+    var response = await fetch('data/' + file + '.csv?nocache=' + (new Date()).getTime());
     var lookup = await response.text();
     // turn text into object
     lookup = lookup.split('\n').map(row => row.split(','));
@@ -384,8 +462,8 @@ async function fetchCSV(file) {
 }
 
 // trigger hover effects when entering area
-map.on('mouseenter', mapFill, function () {map.getCanvas().style.cursor = 'pointer';});
-map.on('mouseleave', mapFill, function () {map.getCanvas().style.cursor = '';});
+map.on('mouseenter', mapFill, function () { map.getCanvas().style.cursor = 'pointer'; });
+map.on('mouseleave', mapFill, function () { map.getCanvas().style.cursor = ''; });
 let hoveredId = null;
 map.on('mousemove', mapFill, (e) => {
     if (e.features.length > 0) {
@@ -411,7 +489,7 @@ map.on('mouseleave', mapFill, () => {
             { hover: false }
         );
     }
-hoveredId = null;
+    hoveredId = null;
 });
 
 // add navigation

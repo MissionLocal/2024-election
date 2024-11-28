@@ -1,15 +1,18 @@
-body, html {
+body,
+html {
     margin: 0;
     display: flex;
-    justify-content: center; /* Center horizontally */
-    overflow-y: auto; /* Allow scrolling if content exceeds viewport height */
+    justify-content: center;
+    /* Center horizontally */
+    overflow-y: auto;
+    /* Allow scrolling if content exceeds viewport height */
     overflow-x: hidden;
     font-family: Barlow, sans-serif;
 }
 
 #main-container {
     padding: 10px 0px 10px 0px;
-    max-width: 600px; 
+    max-width: 600px;
     margin: 10px 0px 10px 0px;
 }
 
@@ -25,10 +28,12 @@ body, html {
 } */
 
 .expand-collapse-indicator {
-    margin-left: 10px; /* Adds space between the heading and the indicator */
+    margin-left: 10px;
+    /* Adds space between the heading and the indicator */
     font-size: 18px;
     font-weight: bold;
-    cursor: pointer; /* Makes the indicator look clickable */
+    cursor: pointer;
+    /* Makes the indicator look clickable */
 }
 
 
@@ -38,7 +43,8 @@ body, html {
     height: 500px;
     margin-top: 10px;
     margin-bottom: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Add subtle shadow */
     position: relative;
 
 }
@@ -46,13 +52,14 @@ body, html {
 #text-container {
     position: relative;
     margin-top: 25px;
-    margin-bottom: 25px;
+    /* margin-bottom: 10px; */
 }
 
 /* charts */
 
 .chart {
-    margin-bottom: 20px; /* Adjust the value as needed */
+    margin-bottom: 10px;
+    /* Adjust the value as needed */
 }
 
 
@@ -68,7 +75,8 @@ hr.solid {
     padding-bottom: 25px !important;
     height: 75px;
     background: #c5c5c500;
-    display: block; /* Ensures the div takes up the full width */
+    display: block;
+    /* Ensures the div takes up the full width */
     position: relative;
     overflow: hidden;
 }
@@ -86,8 +94,10 @@ hr.solid {
 
 .mark-text {
     position: absolute;
-    top: 50%;  /* Vertically center the text */
-    transform: translateY(37%);  /* Fine-tune vertical centering */
+    top: 50%;
+    /* Vertically center the text */
+    transform: translateY(37%);
+    /* Fine-tune vertical centering */
     z-index: 1;
     white-space: nowrap;
     padding-left: 5px;
@@ -95,8 +105,10 @@ hr.solid {
 
 .city-text {
     position: absolute;
-    top: 50%;  /* Vertically center the text */
-    transform: translateY(37%);  /* Fine-tune vertical centering */
+    top: 50%;
+    /* Vertically center the text */
+    transform: translateY(37%);
+    /* Fine-tune vertical centering */
     z-index: 1;
     white-space: nowrap;
     padding-left: 5px;
@@ -134,17 +146,21 @@ hr.solid {
     position: relative;
 }
 
-.progress-citywide, .progress-local {
-    height: 20px; /* Adjust the height of the progress bars */
+.progress-citywide,
+.progress-local {
+    height: 20px;
+    /* Adjust the height of the progress bars */
     border-radius: 5px;
 }
 
 .progress-citywide {
-    background-color: #80808057; /* Adjust as needed */
+    background-color: #80808057;
+    /* Adjust as needed */
 }
 
 .progress-local {
-    background-color: #f220de; /* Adjust as needed */
+    background-color: #f220de;
+    /* Adjust as needed */
 }
 
 
@@ -165,7 +181,7 @@ hr.solid {
 
 .local-highlight {
     background: linear-gradient(#f220de61, #f220de61),
-                linear-gradient(white, white);
+        linear-gradient(white, white);
 }
 
 .bar-highlight {
@@ -175,7 +191,7 @@ hr.solid {
 
 .overall-highlight {
     background: linear-gradient(#c7c7c761, #c7c7c761),
-                linear-gradient(white, white);
+        linear-gradient(white, white);
 }
 
 .area {
@@ -204,7 +220,7 @@ hr.solid {
     margin-top: 15px;
 }
 
-.footnote { 
+.footnote {
     font-size: small;
 }
 
@@ -231,19 +247,28 @@ hr.solid {
 }
 
 #dataset-dropdown {
-    font-size: 16px; /* Increase font size for better readability */
-    border-radius: 5px; /* Rounded corners */
-    border: 0px solid gray; /* Border for visibility */
-    margin: 0 auto; /* Center the dropdown itself */
+    font-size: 16px;
+    /* Increase font size for better readability */
+    border-radius: 5px;
+    /* Rounded corners */
+    border: 0px solid gray;
+    /* Border for visibility */
+    margin: 0 auto;
+    /* Center the dropdown itself */
     font-family: Barlow, sans-serif;
     width: 100vw;
     max-width: 300px;
-    background-color: white; /* Match legend background */
-    padding: 5px; /* Add padding similar to legend */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
-    appearance: none; /* Remove default styling in some browsers */
+    background-color: white;
+    /* Match legend background */
+    padding: 5px;
+    /* Add padding similar to legend */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Add subtle shadow */
+    appearance: none;
+    /* Remove default styling in some browsers */
     position: relative;
-    padding-right: 30px; /* Space for arrow */
+    padding-right: 30px;
+    /* Space for arrow */
 }
 
 .contest-title {
@@ -254,6 +279,11 @@ hr.solid {
 
 #results {
     margin-top: 25px;
+
+    margin-bottom: 0;
+    /* Or other appropriate value */
+    padding-bottom: 0;
+
 }
 
 
@@ -265,10 +295,11 @@ hr.solid {
         margin-left: 10px;
         margin-right: 10px;
     }
+
     .map-overlay {
         position: absolute;
         top: 95px;
         left: 25px;
     }
-    
+
 }

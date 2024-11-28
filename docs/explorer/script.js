@@ -33,8 +33,14 @@ const fullnames = {
     'district5': ['District 5 supervisor', 'First choice votes'],
     'district7': ['District 7 supervisor', 'First choice votes'],
     'district9': ['District 9 supervisor', 'First choice votes'],
-    'district11': ['District 11 supervisor', 'First chocie votes'],
+    'district11': ['District 11 supervisor', 'First choice votes'],
     'president': ['President', ''],
+    'boe': ['Board of Education', ''],
+    'cc': ['Community College Board', ''],
+    'da': ['District Attorney', ''],
+    'cityattorney': ['City Attorney', ''],
+    'treasurer': ['Treasurer', ''],
+    'sheriff': ['Sheriff', ''],
     'propA': ['Proposition A', 'School bond'],
     'propB': ['Proposition B', 'Health and medical facilities bond'],
     'propC': ['Proposition C', 'Inspector General'],
@@ -203,6 +209,10 @@ function generate(datasets, fullnames, selectedAreas) {
                 targetDiv = document.getElementById('propositions');  // Use the "propositions" div if "Proposition" is found
             }
 
+            if (fullnames[key] && fullnames[key][0].includes("Proposition")) {
+                document.getElementById("propositions-heading").style.display = "block";
+            }
+
             // Ensure the target div exists before appending content
             if (targetDiv) {
                 targetDiv.innerHTML += HTML;
@@ -299,6 +309,8 @@ function clear() {
     results.innerHTML = ""
     propositions.innerHTML = ""
     legendDetailsLocal.innerHTML = "0"
+
+    document.getElementById("propositions-heading").style.display = "none";
 
     // select custom in dropdown
     dropdown.value = 'custom';
