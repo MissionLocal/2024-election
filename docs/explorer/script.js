@@ -150,8 +150,6 @@ function generate(datasets, fullnames, selectedAreas) {
     clearButton.addEventListener("click", clear);
 
     let keys = Object.keys(datasets);
-    let firstKeyExpanded = false; // Track if the first item has been expanded
-
     for (let i = 0; i < keys.length - 1; i++) {
         let key = keys[i];
         let dataset = datasets[key];
@@ -175,15 +173,13 @@ function generate(datasets, fullnames, selectedAreas) {
             let headerTag = "h4";  // Default header tag
             let HTML = "";
 
+            // Check if the key is a "Proposition" and use h6 for Propositions
             if (fullnames[key] && fullnames[key][0].includes("Proposition")) {
-                headerTag = "h6";  // Use h6 for Propositions
+                headerTag = "h6";  // Change to h6 for Propositions
             }
 
-            HTML = "<" + headerTag + " class='chart-heading' id='heading-" + key + "' style='cursor: pointer;'>" + 
-                (fullnames[key] ? fullnames[key][0] : "Unknown") + 
-                " <span class='expand-collapse-indicator'>+</span>" + 
-                "</" + headerTag + ">" +
-                '<div class="chart" id="chart-' + key + '" style="display: none;">' +
+            HTML = "<" + headerTag + " class='chart-heading' id='heading-" + key + "' style='cursor: pointer;'>" + (fullnames[key] ? fullnames[key][0] : "Unknown") + "</" + headerTag + ">" +
+                '<div class="chart" id="chart-' + key + '" style="display: none;">' +  // Hide the chart initially
                 '<p><em>' + (fullnames[key] ? fullnames[key][1] : "No description available") + '</em></p>';
 
             for (let i = 0; i < columns.length; i++) {
@@ -193,6 +189,7 @@ function generate(datasets, fullnames, selectedAreas) {
                     `<div class="progress-container">` +
                     `<div class="progress-citywide" id="progress-citywide-${removeSpaces(key + columns[i])}"></div>` +
                     `<div class="progress-local" id="progress-local-${removeSpaces(key + columns[i])}"></div>` +
+                    // Add the percentage span here
                     `<span class="progress-percentage" id="percentage-${removeSpaces(key + columns[i])}"></span>` +
                     `</div>` +
                     `<div class="mark-text" id="mark-text-${removeSpaces(key + columns[i])}"></div>` +
@@ -200,51 +197,63 @@ function generate(datasets, fullnames, selectedAreas) {
             }
             HTML += '</div><hr>';
 
-            let targetDiv = document.getElementById('results');
+            // Check if the "propositions" or "results" div exists
+            let targetDiv = document.getElementById('results');  // Default target
             if (fullnames[key] && fullnames[key][0].includes("Proposition")) {
-                targetDiv = document.getElementById('propositions');
+                targetDiv = document.getElementById('propositions');  // Use the "propositions" div if "Proposition" is found
             }
 
+            // Ensure the target div exists before appending content
             if (targetDiv) {
                 targetDiv.innerHTML += HTML;
             } else {
                 console.error('Target div not found');
             }
 
-            if (!firstKeyExpanded) {
-                // Expand the first chart by default
-                document.getElementById('chart-' + key).style.display = 'block';
-                const indicator = document.querySelector(`#heading-${key} .expand-collapse-indicator`);
-                if (indicator) indicator.textContent = '-';
-                firstKeyExpanded = true; // Set the flag to true
-            }
+            // Update the progress bars and percentages
 
+            // Inside the loop where you update the progress bars and percentages:
             for (let i = 0; i < columns.length; i++) {
                 let localRateElement = document.getElementById("progress-local-" + removeSpaces(key + columns[i]));
                 let markTextElement = document.getElementById("mark-text-" + removeSpaces(key + columns[i]));
                 let cityRateElement = document.getElementById("progress-citywide-" + removeSpaces(key + columns[i]));
                 let labelElement = document.getElementById("label-" + removeSpaces(key + columns[i]));
-                let percentageElement = document.getElementById("percentage-" + removeSpaces(key + columns[i]));
+                let percentageElement = document.getElementById("percentage-" + removeSpaces(key + columns[i]));  // Get percentage element
 
                 if (localRateElement && markTextElement && cityRateElement && labelElement && percentageElement) {
+                    // Set widths for progress bars
                     localRateElement.style.width = String(localRates[i]) + "%";
-                    markTextElement.style.left = `calc(${localRates[i]}% + 2px)`;
+                    // Position the mark-text at the end of the progress-local bar
+                    markTextElement.style.left = `calc(${localRates[i]}% + 2px)`;  // Adjust +10px to fine-tune the positioning
                     markTextElement.innerHTML = "<span class='bar-highlight local-highlight'>" + String(round(localRates[i]), 0) + "%</span>";
 
                     cityRateElement.style.width = String(cityRates[i]) + "%";
+                    // labelElement.innerHTML = "<strong>" + toTitleCase(columns[i]) + "</strong>" + " (<span class='overall-highlight'>" + String(round(cityRates[i]), 0) + "%</span>)";
                     labelElement.innerHTML = "<strong>" + toTitleCase(columns[i]) + "</strong>";
 
-                    let percentage = cityRates[i];
-                    percentageElement.textContent = `${percentage}%`;
+
+                    // Calculate the percentage for each bar
+                    let percentage = cityRates[i];  // This could be a different variable depending on your logic
+                    percentageElement.textContent = `${percentage}%`;  // Set percentage text
+
+                    // Adjust chart height if necessary
+                    if (fullnames[key][1] == '') {
+                        document.getElementById("chart-" + key).style.height = String((80 * columns.length) - 10) + "px";
+                    } else {
+                        document.getElementById("chart-" + key).style.height = String((80 * columns.length) + 20) + "px";
+                    }
                 } else {
                     console.error("Some elements are missing in the DOM for chart: " + key);
                 }
             }
+
         }
+
     }
+
+    // Add event listeners for expanding/collapsing charts
     addExpandCollapseListeners();
 }
-
 
 function addExpandCollapseListeners() {
     // Get all chart headings (h4 or h6 elements)
