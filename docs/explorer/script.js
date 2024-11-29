@@ -103,11 +103,8 @@ function onMapClick(datasets, fullnames, hoveredId) {
         selectedAreas.push(hoveredId)
         changeMapSelection([hoveredId], true);
     }
-
     generate(datasets, fullnames, selectedAreas);
     pymChild.sendHeight();
-
-
     // send height 
 }
 
@@ -132,8 +129,6 @@ function onDropdownSelect(datasets, fullnames, lookup, value) {
 
     generate(datasets, fullnames, selectedAreas);
     pymChild.sendHeight();
-
-
 }
 
 // function to change map selection
@@ -269,8 +264,6 @@ function generate(datasets, fullnames, selectedAreas) {
                     console.error("Some elements are missing in the DOM for chart: " + key);
                 }
             }
-
-            pymChild.sendHeight();
         }
     }
 
@@ -310,7 +303,6 @@ function addExpandCollapseListeners() {
               if (typeof pymChild !== 'undefined') {
                 pymChild.sendHeight();
             }
-
         });
     });
 }
