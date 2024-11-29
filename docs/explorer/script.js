@@ -105,6 +105,8 @@ function onMapClick(datasets, fullnames, hoveredId) {
     }
 
     generate(datasets, fullnames, selectedAreas);
+
+    // send height 
 }
 
 // when dropdown is clicked
@@ -127,6 +129,7 @@ function onDropdownSelect(datasets, fullnames, lookup, value) {
     }
 
     generate(datasets, fullnames, selectedAreas);
+
 }
 
 // function to change map selection
@@ -268,6 +271,8 @@ function generate(datasets, fullnames, selectedAreas) {
 
 
     }
+    pymChild.sendHeight();
+
     // Add event listeners for expanding/collapsing charts
     addExpandCollapseListeners();
 }
