@@ -285,26 +285,44 @@ function addExpandCollapseListeners() {
             heading.appendChild(indicator); // Add indicator next to heading
         }
 
+        // Attach click event to toggle the visibility of the chart and update the indicator
         heading.addEventListener('click', function () {
             const chartDiv = document.getElementById('chart-' + heading.id.replace('heading-', ''));
             const indicator = heading.querySelector('.expand-collapse-indicator');
 
-            // Check the current display style of the chart div
-            if (chartDiv.style.display === 'none' || chartDiv.style.display === '') {
-                chartDiv.style.display = 'block'; // Show the chart
-                indicator.textContent = '-'; // Change the indicator to '-'
+            // Toggle the chart visibility
+            toggleChartVisibility(chartDiv, indicator);
+        });
 
-            } else {
-                chartDiv.style.display = 'none'; // Hide the chart
-                indicator.textContent = '+'; // Change the indicator to '+'
-            }
+        // Attach click event to the expand-collapse indicator itself
+        heading.querySelector('.expand-collapse-indicator').addEventListener('click', function (event) {
+            const chartDiv = document.getElementById('chart-' + heading.id.replace('heading-', ''));
+            const indicator = event.target; // Get the indicator element
 
-              // Notify Pym.js of the height change
-              if (typeof pymChild !== 'undefined') {
-                pymChild.sendHeight();
-            }
+            // Prevent event from bubbling to the heading click listener
+            event.stopPropagation();
+
+            // Toggle the chart visibility based on the indicator state
+            toggleChartVisibility(chartDiv, indicator);
         });
     });
+}
+
+// Function to toggle the chart visibility and update the indicator text
+function toggleChartVisibility(chartDiv, indicator) {
+    // Check the current display style of the chart div
+    if (chartDiv.style.display === 'none' || chartDiv.style.display === '') {
+        chartDiv.style.display = 'block'; // Show the chart
+        indicator.textContent = '-'; // Change the indicator to '-'
+    } else {
+        chartDiv.style.display = 'none'; // Hide the chart
+        indicator.textContent = '+'; // Change the indicator to '+'
+    }
+
+    // Notify Pym.js of the height change
+    if (typeof pymChild !== 'undefined') {
+        pymChild.sendHeight(); // Send the updated height
+    }
 }
 
 // function to clear everything
