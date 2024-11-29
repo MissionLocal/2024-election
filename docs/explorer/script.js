@@ -306,7 +306,12 @@ function addExpandCollapseListeners() {
                 chartDiv.style.display = 'none'; // Hide the chart
                 indicator.textContent = '+'; // Change the indicator to '+'
             }
-            pym.sendHeight();  // Send height to pym after the action
+
+              // Notify Pym.js of the height change
+              if (typeof pymChild !== 'undefined') {
+                pymChild.sendHeight();
+            }
+            
         });
     });
 }
