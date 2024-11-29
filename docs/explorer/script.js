@@ -299,13 +299,20 @@ function addExpandCollapseListeners() {
             if (chartDiv.style.display === 'none' || chartDiv.style.display === '') {
                 chartDiv.style.display = 'block'; // Show the chart
                 indicator.textContent = '-'; // Change the indicator to '-'
+                
+                // Send height update after the chart is shown
+                pym.sendHeight(); 
             } else {
                 chartDiv.style.display = 'none'; // Hide the chart
                 indicator.textContent = '+'; // Change the indicator to '+'
+                
+                // Send height update after the chart is hidden
+                pym.sendHeight(); 
             }
         });
     });
 }
+
 
 
 // function to clear everything
