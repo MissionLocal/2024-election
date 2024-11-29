@@ -303,13 +303,11 @@ function addExpandCollapseListeners() {
             if (chartDiv.style.display === 'none' || chartDiv.style.display === '') {
                 chartDiv.style.display = 'block'; // Show the chart
                 indicator.textContent = '-'; // Change the indicator to '-'
+                pym.sendHeight();  // Send height to pym after the action
+
             } else {
                 chartDiv.style.display = 'none'; // Hide the chart
                 indicator.textContent = '+'; // Change the indicator to '+'
-            }
-
-            // Send the height update after the chart is expanded or collapsed
-            if (typeof pym !== 'undefined') {
                 pym.sendHeight();  // Send height to pym after the action
             }
         });
