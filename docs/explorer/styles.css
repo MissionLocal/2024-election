@@ -241,7 +241,7 @@ hr.solid {
 
 .map-overlay {
     position: absolute;
-    top: 87px;
+    top: 60px;
     left: 25px;
     background: #fff;
     margin-right: 20px;
@@ -305,7 +305,7 @@ hr.solid {
 /* MOBILE STUFF */
 
 /* Mobile Styles */
-@media (max-width: 768px) {
+@media (max-width: 500px) {
     .main-container {
         margin-left: 10px;
         margin-right: 10px;
@@ -324,5 +324,4 @@ hr.solid {
         top: 105px;
         left: 25px;
     }
-
 }
