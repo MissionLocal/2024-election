@@ -321,13 +321,13 @@ function addExpandCollapseListeners() {
             if (chartDiv.style.display === 'none' || chartDiv.style.display === '') {
                 chartDiv.style.display = 'block'; // Show the chart
                 indicator.textContent = '-'; // Change the indicator to '-'
-                pym.sendHeight();  // Send height to pym after the action
 
             } else {
                 chartDiv.style.display = 'none'; // Hide the chart
                 indicator.textContent = '+'; // Change the indicator to '+'
-                pym.sendHeight();  // Send height to pym after the action
             }
+
+            pym.sendHeight();  // Send height to pym after the action
         });
     });
 }
