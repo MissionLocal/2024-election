@@ -46,7 +46,7 @@ const fullnames = {
     'statead17': ['State Assembly District 17', ''],
     'statead19': ['State Assembly District 19', ''],
     'senator': ['Senator', ''],
-    'senatorp': ['Senator (partial term)'],
+    'senatorp': ['Senator (partial term)', ''],
     'rep11': ['Representative District 11', ''],
     'rep15': ['Representative District 15', ''],
     'sen11': ['State Senator District 11', ''],
