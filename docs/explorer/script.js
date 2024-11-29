@@ -255,8 +255,8 @@ function generate(datasets, fullnames, selectedAreas) {
                     labelElement.innerHTML = "<strong>" + toTitleCase(columns[i]) + "</strong>";
 
                     // Format and position the percentage for citywide
-                    percentageElement.style.position = 'absolute';
-                    percentageElement.style.left = `calc(${cityRates[i]}% + 10px)`;  // Position the percentage at the end of the progress bar (adjust +10px to your liking)
+                    // percentageElement.style.position = 'absolute';
+                    percentageElement.style.left = `calc(${cityRates[i]}% + 6px)`;  // Position the percentage at the end of the progress bar (adjust +10px to your liking)
                     percentageElement.innerHTML = "<span class='bar-highlight overall-highlight'>" + String(round(cityRates[i]), 0) + "%</span>";  // Apply same formatting
 
                     // Adjust chart height if necessary
@@ -271,10 +271,7 @@ function generate(datasets, fullnames, selectedAreas) {
             }
 
             pymChild.sendHeight();
-
         }
-
-
     }
 
     // Add event listeners for expanding/collapsing charts
@@ -529,6 +526,29 @@ map.addControl(new mapboxgl.NavigationControl());
 this.map.once('load', () => {
     this.map.resize();
 });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Listen for clicks on chart headings
+    document.querySelectorAll('.chart-heading').forEach(heading => {
+        heading.addEventListener('click', (event) => {
+            // Toggle the visibility of the associated chart
+            const chartId = event.target.id.replace('heading-', 'chart-');
+            const chart = document.getElementById(chartId);
+
+            if (chart) {
+                const isHidden = chart.style.display === 'none';
+                chart.style.display = isHidden ? 'block' : 'none';
+
+                // Update Pym.js height after the chart's visibility changes
+                setTimeout(() => {
+                    pymChild.sendHeight();
+                }, 300); // Delay slightly to ensure animation completion
+            }
+        });
+    });
+});
+
 
 //set everything off
 main();

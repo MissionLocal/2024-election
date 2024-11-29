@@ -46,7 +46,6 @@ html {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     /* Add subtle shadow */
     position: relative;
-
 }
 
 #text-container {
@@ -116,12 +115,6 @@ hr.solid {
     white-space: nowrap;
     padding-left: 5px;
 }
-
-
-
-
-
-
 
 .bar-label {
     font-size: 14px;
