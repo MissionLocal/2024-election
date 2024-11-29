@@ -276,7 +276,6 @@ function generate(datasets, fullnames, selectedAreas) {
 
     // Add event listeners for expanding/collapsing charts
     addExpandCollapseListeners();
-    pymChild.sendHeight();
 }
 
 function addExpandCollapseListeners() {
@@ -311,7 +310,7 @@ function addExpandCollapseListeners() {
               if (typeof pymChild !== 'undefined') {
                 pymChild.sendHeight();
             }
-            
+
         });
     });
 }
