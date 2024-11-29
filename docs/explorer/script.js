@@ -244,7 +244,7 @@ function generate(datasets, fullnames, selectedAreas) {
                     localRateElement.style.width = String(localRates[i]) + "%";
                     // Position the mark-text at the end of the progress-local bar
                     markTextElement.style.left = `calc(${localRates[i]}% + 2px)`;  // Adjust +2px to fine-tune the positioning
-                    markTextElement.innerHTML = "<span class='bar-highlight local-highlight'>" + String(localRates[i].toFixed(1)) + "%</span>";
+                    markTextElement.innerHTML = "<span class='bar-highlight local-highlight'>" + String(localRates[i].toFixed(0)) + "%</span>";
 
                     cityRateElement.style.width = String(cityRates[i]) + "%";
                     labelElement.innerHTML = "<strong>" + toTitleCase(columns[i]) + "</strong>";
@@ -252,7 +252,7 @@ function generate(datasets, fullnames, selectedAreas) {
                     // Format and position the percentage for citywide
                     // percentageElement.style.position = 'absolute';
                     percentageElement.style.left = `calc(${cityRates[i]}% + 6px)`;  // Position the percentage at the end of the progress bar (adjust +10px to your liking)
-                    percentageElement.innerHTML = "<span class='bar-highlight overall-highlight'>" + String(cityRates[i].toFixed(1)) + "%</span>";
+                    percentageElement.innerHTML = "<span class='bar-highlight overall-highlight'>" + String(cityRates[i].toFixed(0)) + "%</span>";
 
                     // Adjust chart height if necessary
                     if (fullnames[key][1] == '') {
