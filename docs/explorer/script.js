@@ -276,6 +276,27 @@ function generate(datasets, fullnames, selectedAreas) {
 
     // Add event listeners for expanding/collapsing charts
     addExpandCollapseListeners();
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Listen for clicks on chart headings
+        document.querySelectorAll('.chart-heading').forEach(heading => {
+            heading.addEventListener('click', (event) => {
+                // Toggle the visibility of the associated chart
+                const chartId = event.target.id.replace('heading-', 'chart-');
+                const chart = document.getElementById(chartId);
+    
+                if (chart) {
+                    const isHidden = chart.style.display === 'none';
+                    chart.style.display = isHidden ? 'block' : 'none';
+    
+                    // Update Pym.js height after the chart's visibility changes
+                    setTimeout(() => {
+                        pymChild.sendHeight();
+                    }, 300); // Delay slightly to ensure animation completion
+                }
+            });
+        });
+    });
 }
 
 function addExpandCollapseListeners() {
@@ -526,29 +547,6 @@ map.addControl(new mapboxgl.NavigationControl());
 this.map.once('load', () => {
     this.map.resize();
 });
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Listen for clicks on chart headings
-    document.querySelectorAll('.chart-heading').forEach(heading => {
-        heading.addEventListener('click', (event) => {
-            // Toggle the visibility of the associated chart
-            const chartId = event.target.id.replace('heading-', 'chart-');
-            const chart = document.getElementById(chartId);
-
-            if (chart) {
-                const isHidden = chart.style.display === 'none';
-                chart.style.display = isHidden ? 'block' : 'none';
-
-                // Update Pym.js height after the chart's visibility changes
-                setTimeout(() => {
-                    pymChild.sendHeight();
-                }, 300); // Delay slightly to ensure animation completion
-            }
-        });
-    });
-});
-
 
 //set everything off
 main();
