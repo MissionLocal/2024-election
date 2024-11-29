@@ -277,26 +277,21 @@ function generate(datasets, fullnames, selectedAreas) {
     // Add event listeners for expanding/collapsing charts
     addExpandCollapseListeners();
 
-    document.addEventListener('DOMContentLoaded', () => {
         // Listen for clicks on chart headings
-        document.querySelectorAll('.chart-heading').forEach(heading => {
-            heading.addEventListener('click', (event) => {
-                // Toggle the visibility of the associated chart
-                const chartId = event.target.id.replace('heading-', 'chart-');
-                const chart = document.getElementById(chartId);
-    
-                if (chart) {
-                    const isHidden = chart.style.display === 'none';
-                    chart.style.display = isHidden ? 'block' : 'none';
-    
-                    // Update Pym.js height after the chart's visibility changes
-                    setTimeout(() => {
-                        pymChild.sendHeight();
-                    }, 300); // Delay slightly to ensure animation completion
+        // Add toggle functionality for chart headings
+        document.querySelectorAll('.chart-heading').forEach((heading) => {
+            heading.addEventListener('click', () => {
+                const chart = document.getElementById(`chart-${heading.id.split('-')[1]}`);
+                if (chart.style.display === 'none' || chart.style.display === '') {
+                    chart.style.display = 'block'; // Expand the chart
+                } else {
+                    chart.style.display = 'none';  // Collapse the chart
                 }
+
+                // Notify Pym.js about the height change
+                pymChild.sendHeight();
             });
         });
-    });
 }
 
 function addExpandCollapseListeners() {
