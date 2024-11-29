@@ -17,7 +17,7 @@ html {
 }
 
 .container {
-    padding: 10px;
+    padding: 10px 10px 10px 10px;
     max-width: none;
 }
 
@@ -56,12 +56,6 @@ html {
 }
 
 /* charts */
-
-.chart {
-    margin-bottom: 10px;
-    /* Adjust the value as needed */
-}
-
 
 hr.solid {
     border-top: 2px solid #bbbbbb1c;
