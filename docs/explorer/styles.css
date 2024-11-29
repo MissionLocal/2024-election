@@ -311,6 +311,14 @@ hr.solid {
         margin-right: 10px;
     }
 
+    .map {
+        padding-right: 10px;
+    }
+    .body {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
     .map-overlay {
         position: absolute;
         top: 95px;
