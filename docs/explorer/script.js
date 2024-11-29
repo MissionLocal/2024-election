@@ -186,16 +186,16 @@ function generate(datasets, fullnames, selectedAreas) {
         if (localColumnSums[0] > 0) {
             let headerTag = "h4";  // Default header tag
             let HTML = "";
-        
+
             // Check if the key is a "Proposition" and use h6 for Propositions
             if (fullnames[key] && fullnames[key][0].includes("Proposition")) {
                 headerTag = "h6";  // Change to h6 for Propositions
             }
-        
+
             HTML = "<" + headerTag + " class='chart-heading' id='heading-" + key + "' style='cursor: pointer;'>" + (fullnames[key] ? fullnames[key][0] : "Unknown") + "</" + headerTag + ">" +
                 '<div class="chart" id="chart-' + key + '" style="display: none;">' +  // Hide the chart initially
                 '<p><em>' + (fullnames[key] ? fullnames[key][1] : "No description available") + '</em></p>';
-        
+
             for (let i = 0; i < columns.length; i++) {
                 HTML +=
                     '<div class="glass">' +
@@ -203,31 +203,32 @@ function generate(datasets, fullnames, selectedAreas) {
                     `<div class="progress-container">` +
                     `<div class="progress-citywide" id="progress-citywide-${removeSpaces(key + columns[i])}"></div>` +
                     `<div class="progress-local" id="progress-local-${removeSpaces(key + columns[i])}"></div>` +
-                    // Add the percentage span here
+                    // Add the percentage span here for progress-citywide
                     `<span class="progress-percentage" id="percentage-${removeSpaces(key + columns[i])}"></span>` +
                     `</div>` +
                     `<div class="mark-text" id="mark-text-${removeSpaces(key + columns[i])}"></div>` +
                     '</div>';
             }
             HTML += '</div><hr>';
-        
+
             // Check if the "propositions" or "results" div exists
             let targetDiv = document.getElementById('results');  // Default target
             if (fullnames[key] && fullnames[key][0].includes("Proposition")) {
                 targetDiv = document.getElementById('propositions');  // Use the "propositions" div if "Proposition" is found
             }
-        
+
             if (fullnames[key] && fullnames[key][0].includes("Proposition")) {
                 document.getElementById("propositions-heading").style.display = "block";
             }
-        
+
             // Ensure the target div exists before appending content
             if (targetDiv) {
                 targetDiv.innerHTML += HTML;
             } else {
                 console.error('Target div not found');
             }
-        
+
+            // Update the progress bars and percentages
             // Update the progress bars and percentages
             for (let i = 0; i < columns.length; i++) {
                 let localRateElement = document.getElementById("progress-local-" + removeSpaces(key + columns[i]));
@@ -235,29 +236,22 @@ function generate(datasets, fullnames, selectedAreas) {
                 let cityRateElement = document.getElementById("progress-citywide-" + removeSpaces(key + columns[i]));
                 let labelElement = document.getElementById("label-" + removeSpaces(key + columns[i]));
                 let percentageElement = document.getElementById("percentage-" + removeSpaces(key + columns[i]));  // Get percentage element
-        
+
                 if (localRateElement && markTextElement && cityRateElement && labelElement && percentageElement) {
                     // Set widths for progress bars
                     localRateElement.style.width = String(localRates[i]) + "%";
                     // Position the mark-text at the end of the progress-local bar
                     markTextElement.style.left = `calc(${localRates[i]}% + 2px)`;  // Adjust +2px to fine-tune the positioning
                     markTextElement.innerHTML = "<span class='bar-highlight local-highlight'>" + String(round(localRates[i]), 0) + "%</span>";
-        
+
                     cityRateElement.style.width = String(cityRates[i]) + "%";
-                    labelElement.innerHTML = "<strong>" + toTitleCase(columns[i]) + "</strong>" + " (<span class='overall-highlight'>" + String(round(cityRates[i]), 0) + "%</span>)";
-                    
-                    // Create and position the label for Citywide at the end of the bar
-                    let citywideLabelElement = document.createElement("span");
-                    citywideLabelElement.classList.add("citywide-label");
-                    citywideLabelElement.innerHTML = `<strong>${String(round(cityRates[i]), 0)}%</strong>`;
-        
-                    // Append the label to the citywide bar (at the end)
-                    cityRateElement.appendChild(citywideLabelElement);
-        
-                    // Calculate the percentage for each bar
-                    let percentage = cityRates[i];  // This could be a different variable depending on your logic
-                    percentageElement.textContent = `${percentage}%`;  // Set percentage text
-        
+                    labelElement.innerHTML = "<strong>" + toTitleCase(columns[i]) + "</strong>";
+
+                    // Format and position the percentage for citywide
+                    percentageElement.style.position = 'absolute';
+                    percentageElement.style.left = `calc(${cityRates[i]}% + 10px)`;  // Position the percentage at the end of the progress bar (adjust +10px to your liking)
+                    percentageElement.innerHTML = "<span class='bar-highlight overall-highlight'>" + String(round(cityRates[i]), 0) + "%</span>";  // Apply same formatting
+
                     // Adjust chart height if necessary
                     if (fullnames[key][1] == '') {
                         document.getElementById("chart-" + key).style.height = String((80 * columns.length) - 10) + "px";
@@ -268,9 +262,11 @@ function generate(datasets, fullnames, selectedAreas) {
                     console.error("Some elements are missing in the DOM for chart: " + key);
                 }
             }
+
+
         }
-        
-        
+
+
     }
     // Add event listeners for expanding/collapsing charts
     addExpandCollapseListeners();
