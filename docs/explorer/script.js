@@ -299,7 +299,6 @@ function addExpandCollapseListeners() {
             if (chartDiv.style.display === 'none' || chartDiv.style.display === '') {
                 chartDiv.style.display = 'block'; // Show the chart
                 indicator.textContent = '-'; // Change the indicator to '-'
-                
                 // Send height update after the chart is shown
                 pym.sendHeight(); 
             } else {
