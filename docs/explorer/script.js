@@ -39,7 +39,7 @@ const fullnames = {
     'cc': ['City College Board', ''],
     'da': ['District Attorney', ''],
     'cityattorney': ['City Attorney', ''],
-    'treasurer': ['Treasurer', ''],
+    // 'treasurer': ['Treasurer', ''],
     'sheriff': ['Sheriff', ''],
     'bartboard7': ['BART Board District 7', ''],
     'bartboard9': ['BART Board District 9', ''],
