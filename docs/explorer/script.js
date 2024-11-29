@@ -276,22 +276,7 @@ function generate(datasets, fullnames, selectedAreas) {
 
     // Add event listeners for expanding/collapsing charts
     addExpandCollapseListeners();
-
-        // Listen for clicks on chart headings
-        // Add toggle functionality for chart headings
-        document.querySelectorAll('.chart-heading').forEach((heading) => {
-            heading.addEventListener('click', () => {
-                const chart = document.getElementById(`chart-${heading.id.split('-')[1]}`);
-                if (chart.style.display === 'none' || chart.style.display === '') {
-                    chart.style.display = 'block'; // Expand the chart
-                } else {
-                    chart.style.display = 'none';  // Collapse the chart
-                }
-
-                // Notify Pym.js about the height change
-                pymChild.sendHeight();
-            });
-        });
+    pymChild.sendHeight();
 }
 
 function addExpandCollapseListeners() {
@@ -321,7 +306,6 @@ function addExpandCollapseListeners() {
                 chartDiv.style.display = 'none'; // Hide the chart
                 indicator.textContent = '+'; // Change the indicator to '+'
             }
-
             pym.sendHeight();  // Send height to pym after the action
         });
     });
