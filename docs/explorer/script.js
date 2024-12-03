@@ -36,7 +36,7 @@ const fullnames = {
     'district11': ['District 11 supervisor', 'First choice votes'],
     'president': ['President', ''],
     'boe': ['Board of Education', ''],
-    'cc': ['Community College Board', ''],
+    'cc': ['City College Board', ''],
     'da': ['District Attorney', ''],
     'cityattorney': ['City Attorney', ''],
     // 'treasurer': ['Treasurer', ''],
