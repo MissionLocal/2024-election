@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     let currentPopup; // Variable to hold the current popup reference
-    let currentDistrict = 'District 7'; // Set this based on user selection
+    let currentDistrict = 'District 9'; // Set this based on user selection
 
     // Map load event
     map.on('load', () => {
