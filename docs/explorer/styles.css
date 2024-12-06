@@ -133,6 +133,15 @@ hr.solid {
     margin-bottom: 15px;
 
 }
+
+.turnout-label {
+    position: relative;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    /* make italic */
+    font-style: italic;
+
+}
 .progress-percentage {
     position: absolute;
     top: -1px;  /* Adjust the vertical position (make it slightly higher or lower as needed) */
@@ -193,6 +202,11 @@ hr.solid {
 
 .overall-highlight {
     background: linear-gradient(#c7c7c761, #c7c7c761),
+        linear-gradient(white, white);
+}
+
+.turnout-highlight {
+    background: linear-gradient(#f7f7f7, #f7f7f7),
         linear-gradient(white, white);
 }
 

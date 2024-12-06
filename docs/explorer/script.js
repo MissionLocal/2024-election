@@ -22,6 +22,7 @@ var source = 'basemap'
 var selectedAreas = []
 var legendDetailsLocal = document.getElementById("legend-details-local")
 var legendDetailsTotal = document.getElementById("legend-details-total")
+var turnoutDetails = document.getElementById("turnout-details")
 var results = document.getElementById('results')
 var areaList = document.getElementById('area-list')
 var dropdown = document.getElementById('dataset-dropdown');
@@ -103,6 +104,7 @@ function onMapClick(datasets, fullnames, hoveredId) {
         selectedAreas.push(hoveredId)
         changeMapSelection([hoveredId], true);
     }
+
     generate(datasets, fullnames, selectedAreas);
     pymChild.sendHeight();
     // send height 
@@ -148,6 +150,7 @@ function changeMapSelection(areas, bool) {
 function generate(datasets, fullnames, selectedAreas) {
     results.innerHTML = ""; // clear the results
     propositions.innerHTML = ""; // clear the propositions
+    turnoutDetails.innerHTML = "";
 
     if (selectedAreas.length == 0) {
         areaList.innerHTML = "<span class='area'>No area selected</span>";
@@ -162,6 +165,10 @@ function generate(datasets, fullnames, selectedAreas) {
 
     local_voters = selectedAreas.reduce((acc, area) => acc + datasets['turnout']['votes_cast'][area], 0);
     legendDetailsLocal.innerHTML = numberWithCommas(local_voters);
+    registered_voters = selectedAreas.reduce((acc, area) => acc + datasets['turnout']['registered_voters'][area], 0);
+    turnoutDetails.innerHTML = round((local_voters / registered_voters) * 100, 1) + "% turnout in selected area";
+    console.log(`Local Voters: ${local_voters}, Registered Voters: ${registered_voters}`);
+
 
     var clearButton = document.getElementById("clear-button");
     clearButton.addEventListener("click", clear);
@@ -338,6 +345,7 @@ function clear() {
     results.innerHTML = ""
     propositions.innerHTML = ""
     legendDetailsLocal.innerHTML = "0"
+    turnoutDetails.innerHTML = ""
 
     document.getElementById("propositions-heading").style.display = "none";
 
