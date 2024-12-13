@@ -12,11 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const targetId = this.getAttribute('href').substring(1);
             const targetElement = document.getElementById(targetId);
             if (targetElement) {
-                // Calculate precise scroll position
-                const yOffset = -10; // Adjust this value if there's a sticky header or offset needed
-                const yPosition = targetElement.getBoundingClientRect().top + window.scrollY + yOffset;
-                window.scrollTo({ top: yPosition, behavior: 'smooth' });
-
+                targetElement.scrollIntoView({ behavior: 'smooth' });
                 // Send height update to parent after scrolling
                 setTimeout(() => {
                     pymChild.sendHeight();
