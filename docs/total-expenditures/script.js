@@ -25,7 +25,7 @@ d3.csv("clean.csv").then(function (data) {
         "GrowSF": "#8ad6ce", // Assign color for tag1
         "Abundance Network": "#f67cf6", // Assign color for tag2
         "TogetherSF": "#efbe25"
-
+    };
     
     // Create a custom color scale using the color map
     const colorScale = d3.scaleOrdinal()
