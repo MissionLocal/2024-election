@@ -1,0 +1,162 @@
+body {
+    font-family: "barlow", sans-serif;
+    font-size: 16px;
+}
+
+a {
+    color: #5E5E5E;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+a:hover {
+    color: #5682A9;
+}
+
+a:visited {
+    color: #5E5E5E;
+}
+
+/* intro */
+
+.intro-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0;
+}
+.intro-content {
+    display: flex;
+    flex-direction: column;
+    min-width: 275px;
+    max-width: 640px;
+    width: 90%;
+}
+.intro-graf {
+    font-size: 18px;
+    line-height: 1.5;
+    margin: 0 0 20px 0;
+}
+
+/* portraits */
+
+.portrait-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 900px;
+    margin: auto; /* Margin between containers */
+    padding: 0 10px; /* Padding on the sides of the container */
+    gap: 20px; /* Even spacing between columns */
+}
+
+.portrait-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 150px;
+    gap: 5px;
+}
+
+.portrait-row img {
+    width: 150px;
+    height: auto;
+}
+
+.portrait-row img:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.portrait-name {
+    font-weight: bold;
+    padding: 2px 0; 
+    justify-content: center;
+    text-align: center;
+}
+
+.portrait-title {
+    font-size: 14px;
+    color: #555;
+    padding: 0 0 2px 0;
+    justify-content: center;
+    text-align: center;
+}
+
+/* popup */
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 2px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 600px;
+  height: auto;
+  max-height: 80vh;
+  max-width: 80%;
+  overflow-y: auto;
+  padding: 20px;
+  z-index: 1000;
+  text-align: center;
+}
+
+.popup img {
+width: 100%;
+height: auto;
+max-height: 50vh;
+border-radius: 3px;
+object-fit: contain;
+}
+
+.popup-description {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+.popup-description p {
+    text-align: left;
+}
+
+.popup-description h2 {
+    text-align: left;
+}
+
+.popup-description h3 {
+    text-align: left;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+/* close button */
+
+.close-btn {
+    position: absolute; /* Position relative to the nearest positioned ancestor (the popup) */
+    top: 10px; /* Distance from the top of the popup */
+    right: 10px;
+    margin-top: 10px;
+    background-color: #fff;
+    color: #333;
+    padding: 4px 6px;
+    border: 0.5px solid #333;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    background-color: #edebeb;
+}
