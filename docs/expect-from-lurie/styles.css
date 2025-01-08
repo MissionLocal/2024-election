@@ -17,9 +17,9 @@ a:visited {
     color: #5E5E5E;
 }
 
-/* intro */
+/* intro (no longer needed) */
 
-.intro-box {
+/*.intro-box {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -37,7 +37,7 @@ a:visited {
     font-size: 18px;
     line-height: 1.5;
     margin: 0 0 20px 0;
-}
+}*/
 
 /* portraits */
 
