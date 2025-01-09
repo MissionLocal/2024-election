@@ -20,6 +20,10 @@ document.addEventListener('DOMContentLoaded', function () {
         popup.style.display = 'block';
         overlay.style.display = 'block';
         });
+
+        // Notify Pym.js to adjust iframe height
+        pymChild.sendHeight();
+    });
     });
 
     const closePopup = () => {
