@@ -34,11 +34,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Check the class of the container clicked
                 if (container.classList.contains('top')) {
-                    popup.style.top = '90vh';
+                    popup.style.top = '80vh';
                 } else if (container.classList.contains('middle')) {
                     popup.style.top = '50vh';
-                } else {
+                } else if (container.classList.contains('bottom')) {
                     popup.style.top = '20vh';
+                }
+                else {
+                    popup.style.top = '50vh';
                 }
             }
         }
