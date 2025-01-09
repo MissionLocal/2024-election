@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Notify Pym.js to adjust iframe height
         pymChild.sendHeight();
-    });
+    
     });
 
     const closePopup = () => {
