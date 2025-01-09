@@ -29,19 +29,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
     container.forEach(container => {
         container.addEventListener('click', () => {
-            // Check the class of the container clicked
-            if (container.classList.contains('top')) {
-                // Update popup height for a small container
-                popup.style.top = '90vh';
-            } else if (container.classList.contains('middle')) {
-                // Update popup height for a medium container
-                popup.style.top = '50vh';
-            } else {
-                // Default height if no specific class matches
-                popup.style.top = '20vh';
+            // triggers only on mobile
+            if (window.matchMedia('(max-width: 600px)').matches) {
+
+                // Check the class of the container clicked
+                if (container.classList.contains('top')) {
+                    popup.style.top = '90vh';
+                } else if (container.classList.contains('middle')) {
+                    popup.style.top = '50vh';
+                } else {
+                    popup.style.top = '20vh';
+                }
             }
         }
-    )});
+    )}
+    );
 
     const closePopup = () => {
         popup.style.display = 'none';
