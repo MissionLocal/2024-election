@@ -32,13 +32,13 @@ document.addEventListener('DOMContentLoaded', function () {
             // Check the class of the container clicked
             if (container.classList.contains('top')) {
                 // Update popup height for a small container
-                popup.style.maxHeight = '0vh';
+                popup.style.top = '0vh';
             } else if (container.classList.contains('middle')) {
                 // Update popup height for a medium container
-                popup.style.maxHeight = '50vh';
+                popup.style.top = '50vh';
             } else {
                 // Default height if no specific class matches
-                popup.style.maxHeight = '80vh';
+                popup.style.top = '80vh';
             }
         }
     )});
