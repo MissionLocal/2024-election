@@ -1,2 +1,2 @@
-# election-2024
- Charting and mapping the San Francisco election results.
+# Election results
+ Charting and mapping results from the San Francisco November 2024 general election. 
