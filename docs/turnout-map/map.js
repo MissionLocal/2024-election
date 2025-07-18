@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var pymChild = new pym.Child();
 
     // Define access token
-    mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY2t0dnZwcm1mMmR5YzMycDNrcDZtemRybyJ9.Br-G0LTOB3M6w83Az4XGtQ";
+    mapboxgl.accessToken = "pk.eyJ1IjoibWxub3ciLCJhIjoiY21kODJzdWZnMHFqMzJtb2tqc20wOXY2NyJ9.oeZTOKB57oX-95RuV-bkaQ";
 
     // Define basemap parameters
     const mapZoom = window.innerWidth < 400 ? 10.4 : 11.1;
