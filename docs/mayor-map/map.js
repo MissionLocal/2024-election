@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     map.on('load', () => {
 
-        map.fitBounds(turf.bbox(data), { padding: 20 });
+        // map.fitBounds(turf.bbox(data), { padding: 20 });
 
         // Add GeoJSON data source
         map.addSource('precincts', {
