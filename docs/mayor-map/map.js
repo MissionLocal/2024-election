@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', function () {
     let currentPopup; // Variable to hold the current popup reference
 
     map.on('load', () => {
+
+        map.fitBounds(turf.bbox(data), { padding: 20 });
+
         // Add GeoJSON data source
         map.addSource('precincts', {
             'type': 'geojson',
